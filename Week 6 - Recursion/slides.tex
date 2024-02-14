@@ -1,0 +1,204 @@
+\documentclass[hyperref={colorlinks,citecolor=blue,linkcolor=blue,urlcolor=blue}]{beamer}
+\usepackage{xcolor}
+\usepackage{pgfpages}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsmath,amssymb}
+
+
+\mode<presentation>
+{
+  \usetheme{Darmstadt}       % or try default, Darmstadt, Warsaw, ...
+  \usecolortheme{default} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}    % or try default, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\pgfpagesuselayout{resize to}[%
+  physical paper width=8in, physical paper height=6in]
+
+\title[IbraFSG \- Recursion]{IbraFSG\texttrademark{} 2 - Week 6; Recursion}
+
+
+\author{Ibrahim Chehab}
+\institute{UTM RGASC}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Table of Contents}
+  \tableofcontents
+\end{frame}
+
+\section{Introduction}
+
+\subsection{Welcome back to IbraFSGs\texttrademark{}}
+\begin{frame}
+  \frametitle{Welcome back to IbraFSGs\texttrademark{}}
+  \begin{itemize}
+  \item Welcome back to IbraFSGs\texttrademark{}! Hello to new people and welcome back to tenured members.
+  \item This week we will be discussing recursion.
+  \item Recursion \textbf<overlay specification>{will} haunt you for the rest of CSC148 as you delve into the world of trees, graphs, and other recursive data structures. 
+ \item It will also re-appear in CSC236 as a main character, where you will find closed-forms for recursive functions, prove correctness of recursive algorithms, and much more.
+\end{itemize}
+
+Example: This is the closed-form of the Fibonacci sequence:
+\begin{align}
+F(n) = \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n\right)
+\end{align}
+
+\end{frame}
+
+\subsection{A Recap of the UltraSheet\texttrademark{}}
+\begin{frame}{A Recap of the UltraSheet\texttrademark{}}
+  \begin{itemize}
+    \item An \textit<overlay specification>{UltraSheet\texttrademark{}} is a "cheat sheet" that you compile for yourself to review course materials 
+    \item It acts like your own personalized textbook chapter
+    \item It is a great way to review for tests and exams, and find gaps in your knowledge
+    \item UltraSheets\texttrademark{} help with type 1 and 2 questions 
+  \end{itemize}
+
+
+\end{frame}
+
+\subsection{Key Terms for the week}
+
+\begin{frame}{Key Terms for the week}
+  \textbf<overlay specification>{The following are key terms for this week which you should be able to define. It is highly reccomended that you add these to your UltraSheet\texttrademark{}}
+
+  \begin{itemize}
+  \item Stack Overflow
+  \item Stack frame
+  \item Base case (Exact same thing as MAT102)
+  \item (Maximum) Recursion depth
+  \item Recursive Call
+  \item Divide and Conquer (Not strictly important for this week, however is important to understand for future weeks + CSC236)
+  \end{itemize}
+\end{frame}
+
+\section{Practice Problems}
+\subsection{Practice Problem I: DeepCopying a nested list}
+\begin{frame}[fragile]
+  \frametitle{Practice Problem I: DeepCopying a nested list}
+  We know from our knowledge of the \texttt{List.copy} method that it only creates a shallow copy of the list. This means that if we have a nested list, the inner lists will be copied by reference, and not by value.
+
+  Implement a function \texttt{deep\_copy} that takes a list of integers and/or lists of integers, and returns a deep copy of the list.
+  \begin{lstlisting}[language=Python, caption=Method signature of the deep\_copy method, style=mystyle]
+def deep_copy(lst: Union[List, int]) -> Union[List, int]:
+  """
+  Return a deep copy of lst.
+  """
+
+  \end{lstlisting}
+
+  \textit{Hint: Most recursive functions work on the following principle: What is the least amount of work I can do in this recursive call before giving the rest of the work to the next recursive call?}
+
+\end{frame}
+
+\subsection{Practice Problem II: Iterative to Recursive}
+
+\begin{frame}[fragile]
+  \frametitle{Practice Problem II: Iterative to Recursive}
+  
+  Convert the following iterative function to a recursive function:
+  
+  \begin{lstlisting}[language=Python, style=mystyle]
+def ibranatchi_iterative(n: int) -> int:
+  if n == 0:
+    return 0
+  elif n == 1:
+    return 1
+  elif n == 2:
+    return 5
+
+  sequence = [0, 1, 5]
+  for i in range(3, n + 1):
+    next_value = sequence[i - 1] * 2 sequence[i - 2] - 5 * sequence[i-3]
+    sequence.append(next_value)
+
+  return sequence[-1]
+ 
+def ibranatchi_recursive(n: int) -> int:
+  # TODO: Implement this recursively:
+
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Debrief: Space and Time Complexity}
+  Hash the following out in your groups:
+  \begin{itemize}
+    \item What is the time complexity of the iterative function?
+    \item What is the time complexity of the recursive function?
+    \item What is the space complexity of the iterative function?
+    \item What is the space complexity of the recursive function?
+\end{itemize}
+\end{frame}
+
+\section{Conclusion}
+\subsection{A Final Challenge...}
+
+\begin{frame}
+  \frametitle{A final challenge...}
+  The following method is a recursive method that isn't intuitive right away. It is out of the scope of CSC148, however will serve as great practice for understanding recursion.
+\\
+\textbf{Problem Statement:}
+Sharon Goodwin delves into Python in her free time. She’s trying to create a series of recursive functions that mutually recurse over each other to determine whether a positive integer is even or odd. Help her create these two functions.
+\begin{center}
+  \textbf{RESTRICTIONS:}
+  \begin{itemize}
+    \item You are \textbf{NOT} allowed to use \textbf{ANY} of Python's integer operations \textbf{EXCEPT} subtraction.
+    \item You may \textbf{NOT} use \textbf{Modulo}.
+    \item Each function must have \textbf{EXACTLY} one base-case.
+    \item You \textbf{MUST} use mutual recursion.
+    \item You \textbf{MAY NOT} use any helper methods.
+  \end{itemize}  
+\end{center}
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{A final challenge\ldots}
+  \begin{lstlisting}[language=Python, style=mystyle]
+def is_even(num: int) -> bool:
+    """
+    Method which uses mutual recursion to determine whether an integer is even or odd.
+    """
+
+
+
+def is_odd(num: int) -> bool:
+    """
+    Method which uses mutual recursion to determine whether an integer is even or odd.
+    """
+    \end{lstlisting}    
+\end{frame}
+
+\end{document}
