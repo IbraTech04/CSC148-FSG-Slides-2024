@@ -141,7 +141,7 @@ def ibranatchi_iterative(n: int) -> int:
 
   sequence = [0, 1, 5]
   for i in range(3, n + 1):
-    next_value = sequence[i - 1] * 2 sequence[i - 2] - 5 * sequence[i-3]
+    next_value = sequence[i - 1] * 2 * sequence[i - 2] - 5 * sequence[i - 3]
     sequence.append(next_value)
 
   return sequence[-1]
