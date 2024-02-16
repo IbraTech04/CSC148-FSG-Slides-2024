@@ -67,12 +67,35 @@ def ibranatchi_recursive(n: int) -> int:
 # Recall in MAT102 how we defined an even number as: 2k, k \in Z and an odd number as 2k + 1, k \in Z
 
 
+# These methods realy heavily on my methodology:
+
+# What is the minimum amount of work I can do in *this* recursive call before delegating the rest of the work to the next recursive call?
+# In this case, the minimum amount of work is checking if the number before me is even or odd. If it is, then I can make a decision about my own number. This is all about checking how many times the number bounces between the functions before it reaches the base case.
+
+# If you still don't understand, think of it this way
+
+# Case one: even number given to is_even
+# If we keep subtracting one from an even number, we will eventually reach zero and return back to the is_even method. Hence, is_even must return True if it reaches zero. This is the base case. If the number before me is odd, then I will be even. This is the recursive case.
+
+# Case 2: odd number given to is_even
+# If we keep subtracting one from an odd number, we will eventually reach zero and end up in the opposite method. Hence, is_odd must return False if it reaches zero.
+
+# Case 3: odd number given to is_odd
+# If we keep subtracting one from an odd number, we will eventually reach zero and return back to the is_even method because an odd number mod 2 is just one. This further proves that is_even must return True if it reaches zero.
+
+# Case 4: even number given to is_odd
+# If we keep subtracting one from an even number, we will eventually reach zero and end up in the is_odd method. Hence, is_odd must return False if it reaches zero, further proving that it must return False if it reaches zero.
+
+# Once you understand this, you can see that the methods are just checking if the number before them is even or odd, and then making a decision based on that. This is a classic example of a recursive method that uses a helper method to solve a problem.
+
+# Once you understand this, you can solve *any* recursive problem. It's all about understanding the minimum amount of work you can do in *this* recursive call before delegating the rest of the work to the next recursive call.
+
 def is_odd(n: int) -> bool:
     if n == 0: # Base case
-        return False
-    return is_even(n - 1) 
+        return False # In this case, we know that an odd number was given to to is_even or vice versa. We can return False because we know that the number does not satisfy the condition of the method.
+    return is_even(n - 1) # Hmm. I don't know if **my** number is odd, but I know that if the number before me is even, then i will be odd
 
 def is_even(n: int) -> bool:
     if n == 0: # Base case
-        return True
-    return is_odd(n - 1) 
+        return True # In this case, we know that an even number was given to to is_even or vice versa. We can return True because we know that the number does satisfy the condition of the method.
+    return is_odd(n - 1) # Hmm. I don't know if **my** number is even, but I know that if the number before me is odd, then i will be even

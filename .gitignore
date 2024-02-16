@@ -11,8 +11,6 @@
 *.fls
 *.toc
 
-# LaTeX generated files
-*.pdf
 *.dvi
 *.ps
 
