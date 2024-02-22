@@ -66,15 +66,9 @@
   \frametitle{Welcome back to IbraFSGs\texttrademark{}}
   \begin{itemize}
   \item Welcome back to IbraFSGs\texttrademark{}! Hello to new people and welcome back to tenured members.
-  \item This week we will be discussing recursion.
-  \item Recursion \textbf<overlay specification>{will} haunt you for the rest of CSC148 as you delve into the world of trees, graphs, and other recursive data structures. 
- \item It will also re-appear in CSC236 as a main character, where you will find closed-forms for recursive functions, prove correctness of recursive algorithms, and much more.
+  \item This week we will be discussing \textit{list comprehensions}.
+  \item List Comprehensions are a way to create lists in Python using very little code. They are a very powerful tool that you will use in the future (A2)
 \end{itemize}
-
-Example: This is the closed-form of the Fibonacci sequence:
-\begin{align}
-F(n) = \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n\right)
-\end{align}
 
 \end{frame}
 
@@ -90,20 +84,55 @@ F(n) = \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac
 
 \end{frame}
 
-\subsection{Key Terms for the week}
-
-\begin{frame}{Key Terms for the week}
-  \textbf<overlay specification>{The following are key terms for this week which you should be able to define. It is highly reccomended that you add these to your UltraSheet\texttrademark{}}
-
+\subsection{Key Terms}
+\begin{frame}{Key Terms}
   \begin{itemize}
-  \item Stack Overflow
-  \item Stack frame
-  \item Base case (Exact same thing as MAT102)
-  \item (Maximum) Recursion depth
-  \item Recursive Call
-  \item Divide and Conquer (Not strictly important for this week, however is important to understand for future weeks + CSC236)
-  \end{itemize}
+    \item \textbf{List Comprehension:} A way to create lists in Python using very little code. 
+    \end{itemize}
+    ...Yeah that's about it for this week. Your UltraSheets\texttrademark{} should include more in-depth examples and documentation for the nooks and crannies of list comprehensions this week; Nothing \textit{too} crazy :D
 \end{frame}
+
+\section{List Comprehensions}
+
+\subsection{A Trick to understanding list comprehensions}
+
+\begin{frame}[fragile]
+  \frametitle{A Trick to Understanding List Comprehensions}
+    List Comprehensions may seem scary at first, but they are actually quite simple. The trick to understanding them is to relate them to MAT102:
+
+  Example:
+  
+  \begin{columns}[T]
+    \begin{column}{0.4\textwidth}
+    \begin{align*}
+        \{x^2 : x \in \{0, 1, 2, 3, 4, 5\}\}
+    \end{align*}
+    \end{column}
+    \hfill
+    \begin{column}{0.1\textwidth}
+    \begin{center}
+    \Large $\iff$
+    \end{center}
+    \end{column}
+    \hfill
+    \begin{column}{0.5\textwidth}
+    \begin{lstlisting}[language=Python, style=mystyle]
+[x**2 for x in range(6)]
+    \end{lstlisting}
+    \end{column}
+    \end{columns}
+
+
+    \textbf{Fun Fact:} You can include conditionals in list comprehensions, and items to be added if the condition is not met! Example:
+    \begin{lstlisting}[language=Python, style=mystyle]
+[x**2 for x in range(6) if x % 2 == 0 else x**3]
+    \end{lstlisting}
+    would return a list like this:
+    \begin{lstlisting}[language=Python, style=mystyle]
+[0, 1, 4, 27, 16, 125]
+    \end{lstlisting}
+\end{frame}
+\subsection{Features of the List Comprehension}
 
 \section{Practice Problems}
 \subsection{Practice Problem I: DeepCopying a nested list}
@@ -168,10 +197,9 @@ def ibranatchi_recursive(n: int) -> int:
 
 \begin{frame}
   \frametitle{A final challenge...}
-  The following method is a recursive method that isn't intuitive right away. It is out of the scope of CSC148, however will serve as great practice for understanding recursion.
-\\
-\textbf{Problem Statement:}
-Sharon Goodwin delves into Python in her free time. She’s trying to create a series of recursive functions that mutually recurse over each other to determine whether a positive integer is even or odd. Help her create these two functions.
+Recall from last week our challenge problem:
+
+Sharon Goodwin delves into Python in her free time. She's trying to create a series of recursive functions that mutually recurse over each other to determine whether a positive integer is even or odd. Help her create these two functions.
 \begin{center}
   \textbf{RESTRICTIONS:}
   \begin{itemize}
@@ -185,18 +213,20 @@ Sharon Goodwin delves into Python in her free time. She’s trying to create a s
 \end{frame}
 \begin{frame}[fragile]
   \frametitle{A final challenge\ldots}
+  Continue solving this problem today: 
   \begin{lstlisting}[language=Python, style=mystyle]
 def is_even(num: int) -> bool:
     """
     Method which uses mutual recursion to determine whether an integer is even or odd.
     """
-
+    # TODO: Implement this method with a recursive call to is_odd
 
 
 def is_odd(num: int) -> bool:
     """
     Method which uses mutual recursion to determine whether an integer is even or odd.
     """
+      # TODO: Implement this method with a recursive call to is_even
     \end{lstlisting}    
 \end{frame}
 
