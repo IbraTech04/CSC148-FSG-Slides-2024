@@ -5,6 +5,8 @@ This week, we talked about the key terms that you should add to your UltraSheets
 ## Solutions: 
 All solutions can be found in the [solutions.py](solutions.py) file, paired with descriptive comments and writeups for each problem. 
 
+**NOTE:** All solutions are provided outside FSG hours, and are not endorsed neither explicitly nor implicitly by the UTM RGASC. These solutions are meant to be used as a reference, and not a replacement for the problem solving process. You are encouraged to attend office hours and ask questions during lectures if there are any parts of the solution that you do not understand.
+
 ## Hint for the homework question
 If you're struggling with the homework question, before looking at the solution try reading the following
 
