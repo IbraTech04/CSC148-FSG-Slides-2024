@@ -88,8 +88,11 @@
 \begin{frame}{Key Terms}
   \begin{itemize}
     \item \textbf{List Comprehension:} A way to create lists in Python using very little code. 
+    \item \textbf{Expression:} A piece of code that returns a value.
+    \item \textbf{Iterable:} An object that can be iterated over.
     \end{itemize}
-    ...Yeah that's about it for this week. Your UltraSheets\texttrademark{} should include more in-depth examples and documentation for the nooks and crannies of list comprehensions this week; Nothing \textit{too} crazy :D
+    ...Yeah that's about it for this week. 
+    \textbf{Note:} Your UltraSheets\texttrademark{} should be filled with examples and explanations of these terms, and specifically how they relate to List Comprehensions.
 \end{frame}
 
 \section{List Comprehensions}
@@ -132,25 +135,41 @@
 [0, 1, 4, 27, 16, 125]
     \end{lstlisting}
 \end{frame}
-\subsection{Features of the List Comprehension}
 
 \section{Practice Problems}
-\subsection{Practice Problem I: DeepCopying a nested list}
+\subsection{Practice Problem I: Loop2LstComp}
 \begin{frame}[fragile]
-  \frametitle{Practice Problem I: DeepCopying a nested list}
-  We know from our knowledge of the \texttt{List.copy} method that it only creates a shallow copy of the list. This means that if we have a nested list, the inner lists will be copied by reference, and not by value.
+  
+  \frametitle{Practice Problem I: Loop2LstComp}
 
-  Implement a function \texttt{deep\_copy} that takes a list of integers and/or lists of integers, and returns a deep copy of the list.
-  \begin{lstlisting}[language=Python, caption=Method signature of the deep\_copy method, style=mystyle]
-def deep_copy(lst: Union[List, int]) -> Union[List, int]:
-  """
-  Return a deep copy of lst.
-  """
-  \end{lstlisting}
-
-  \textit{Hint: Most recursive functions work on the following principle: What is the least amount of work I can do in this recursive call before giving the rest of the work to the next recursive call?}
+  Convert the following for loops to an equivalent list comprehension:
+  \begin{lstlisting}[language=Python, style=mystyle]
+# Q1: 
+lst = []
+for i in songs: # songs is an arbitrary list of Song objects; implementation is irrelevant for this question 
+  lst.append(i.title)
+# Q2:
+filter = []
+for song in songs:
+  if song.genre == "Rock":
+    filter.append("Rock on!")
+  elif song.genre == "Pop":
+    filter.append("Pop on!")
+  elif song.genre == "Love":
+    filter.append("No Swifties Allowed")
+  else:
+    filter.append("euuuh, brother euuuh")
+\end{lstlisting}
 
 \end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Practice Problem II: CompOut}
+
+
+\end{frame}
+
 
 \subsection{Practice Problem II: Iterative to Recursive}
 
@@ -185,10 +204,8 @@ def ibranatchi_recursive(n: int) -> int:
   \frametitle{Debrief: Space and Time Complexity}
   Hash the following out in your groups:
   \begin{itemize}
-    \item What is the time complexity of the iterative function?
-    \item What is the time complexity of the recursive function?
-    \item What is the space complexity of the iterative function?
-    \item What is the space complexity of the recursive function?
+    \item What is the time complexity of a list comprehension?
+    \item What is the time complexity of the for-loop equivalent of a list comprehension?
 \end{itemize}
 \end{frame}
 
