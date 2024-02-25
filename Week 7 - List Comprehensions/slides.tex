@@ -151,6 +151,18 @@ for i in songs: # songs is an arbitrary list of Song objects; implementation is 
 # Q2:
 filter = []
 for song in songs:
+    if song.is_liked():
+        filter.append(song)
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Practice Problem I: Loop2LstComp (hard mode)}
+  \begin{lstlisting}[language=Python, style=mystyle]
+# Q3 (aka the end of all of you)
+lst = []
+for song in songs:
   if song.genre == "Rock":
     filter.append("Rock on!")
   elif song.genre == "Pop":
@@ -159,10 +171,10 @@ for song in songs:
     filter.append("No Swifties Allowed")
   else:
     filter.append("euuuh, brother euuuh")
-\end{lstlisting}
-
+    \end{lstlisting}
+\textit{Hint:} You can't use \texttt{elif} in a List Comprehension, but you can use \texttt{if} and \texttt{else}. How can we replicate the \texttt{elif} functionality using only \texttt{if} and \texttt{else}?\\
+\textit{Hint 2:} Start by eliminating \texttt{elif} in the original problem
 \end{frame}
-
 
 \begin{frame}[fragile]
   \frametitle{Practice Problem II: CompOut}
