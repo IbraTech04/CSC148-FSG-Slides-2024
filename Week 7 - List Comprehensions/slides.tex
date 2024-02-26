@@ -70,19 +70,44 @@
   \item List Comprehensions are a way to create lists in Python using very little code. They are a very powerful tool that you will use in the future (A2)
 \end{itemize}
 
+Quick House Keeping Notes: Would you rather IbraFSGs\texttrademark{} continue to provide harder, "worst-case-scenario" midterm-style problems, or would you like to see more "real-world" problems?\\
+Today I've tried to mix the two together, but I'd like to know your thoughts.
+
 \end{frame}
 
 \subsection{A Recap of the UltraSheet\texttrademark{}}
 \begin{frame}{A Recap of the UltraSheet\texttrademark{}}
   \begin{itemize}
-    \item An \textit<overlay specification>{UltraSheet\texttrademark{}} is a "cheat sheet" that you compile for yourself to review course materials 
+    \item An \textit{UltraSheet\texttrademark{}} is a "cheat sheet" that you compile for \textbf{yourself} to review course materials 
+    \begin{itemize}
+      \item Sharing UltraSheets\texttrademark{} is \textbf{counter-productive} and \textbf{will not help you learn the material}
+      \item However, reviewing content in a group and simultaneously updating your UltraSheets\texttrademark{} is a good idea
+    \end{itemize}
     \item It acts like your own personalized textbook chapter
-    \item It is a great way to review for tests and exams, and find gaps in your knowledge
+    \begin{itemize}
+      \item It allows you to \textbf{regurgitate all the course information in a contigous, organized manner} and helps you \textbf{find gaps in your knowledge}
+    \end{itemize}
     \item UltraSheets\texttrademark{} help with type 1 and 2 questions 
+    \begin{itemize}
+      \item Can you remember what type 1 and 2 questions are?
+    \end{itemize}
   \end{itemize}
 
-
 \end{frame}
+
+\subsection{Midterm Debrief}
+\begin{frame}
+  \frametitle{Midterm Debrief}
+  How did the midterm go! In parciular:
+  \begin{itemize}
+    \item Which course content did the midterm emphasize?
+    \item Which types of questions did you notice were emphasized? (Type I, II, III)
+    \item Which studying tactics worked? Which ones didn't?
+    \item What will you do differently for next time?
+  \end{itemize}
+\end{frame}
+
+\section{List Comprehensions}
 
 \subsection{Key Terms}
 \begin{frame}{Key Terms}
@@ -95,7 +120,6 @@
     \textbf{Note:} Your UltraSheets\texttrademark{} should be filled with examples and explanations of these terms, and specifically how they relate to List Comprehensions.
 \end{frame}
 
-\section{List Comprehensions}
 
 \subsection{A Trick to understanding list comprehensions}
 
@@ -173,51 +197,36 @@ for song in songs:
     filter.append("euuuh, brother euuuh")
     \end{lstlisting}
 \textit{Hint:} You can't use \texttt{elif} in a List Comprehension, but you can use \texttt{if} and \texttt{else}. How can we replicate the \texttt{elif} functionality using only \texttt{if} and \texttt{else}?\\
-\textit{Hint 2:} Start by eliminating \texttt{elif} in the original problem
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Practice Problem II: CompOut}
-
-
+\textit{Hint 2:} Start by eliminating \texttt{elif} in the original problem\\
+\textit{Hint 3:} Think of the chain rule from MAT135
 \end{frame}
 
 
-\subsection{Practice Problem II: Iterative to Recursive}
+\subsection{Practice Problem II: List Comprehensions IRL}
 
 \begin{frame}[fragile]
-  \frametitle{Practice Problem II: Iterative to Recursive}
+  \frametitle{Practice Problem II: List Comprehensions IRL}
   
-  Convert the following iterative function to a recursive function:
 
+  Remember our Deepcopy method from last week? Let's implement it using a list comprehension! 
+
+  \textit{Recall the recursive step of the deepcopy method:}
   \begin{lstlisting}[language=Python, style=mystyle]
-def ibranatchi_iterative(n: int) -> int:
-  if n == 0:
-    return 0
-  elif n == 1:
-    return 1
-  elif n == 2:
-    return 5
+to_return = [] 
+for i in range(len(lst)): 
+    to_return.append(deep_copy(lst[i]))
+return to_return
+\end{lstlisting}
 
-  sequence = [0, 1, 5]
-  for i in range(3, n + 1):
-    next_value = sequence[i - 1] * 2 * sequence[i - 2] - 5 * sequence[i - 3]
-    sequence.append(next_value)
-
-  return sequence[-1]
- 
-def ibranatchi_recursive(n: int) -> int:
-  # TODO: Implement this recursively:
-
-  \end{lstlisting}
 \end{frame}
-\subsection{Debrief: Space and Time Complexity}
+\subsection{Debrief: Complexity Analysis}
 \begin{frame}
-  \frametitle{Debrief: Space and Time Complexity}
+  \frametitle{Debrief: Complexity Analysis}
   Hash the following out in your groups:
   \begin{itemize}
     \item What is the time complexity of a list comprehension?
     \item What is the time complexity of the for-loop equivalent of a list comprehension?
+    \item Given the above, which is faster? Why?
 \end{itemize}
 \end{frame}
 
