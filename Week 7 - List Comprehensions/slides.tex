@@ -166,7 +166,7 @@ Today I've tried to mix the two together, but I'd like to know your thoughts.
   
   \frametitle{Practice Problem I: Loop2LstComp}
 
-  Convert the following for loops to an equivalent list comprehension:
+  Nugget is working on clearing out their Spotify Playlist. They're working on making some list comprehensions to filter out some songs. Help them convert the following for-loops into list comprehensions:
   \begin{lstlisting}[language=Python, style=mystyle]
 # Q1: 
 lst = []
@@ -184,7 +184,7 @@ for song in songs:
 \begin{frame}[fragile]
   \frametitle{Practice Problem I: Loop2LstComp (hard mode)}
   \begin{lstlisting}[language=Python, style=mystyle]
-# Q3 (aka the end of all of you)
+# Q3 (Blame Nugget for this, not me):
 lst = []
 for song in songs:
   if song.genre == "Rock":
@@ -202,32 +202,18 @@ for song in songs:
 \end{frame}
 
 
-\subsection{Practice Problem II: List Comprehensions IRL}
 
-\begin{frame}[fragile]
-  \frametitle{Practice Problem II: List Comprehensions IRL}
-  
-
-  Remember our Deepcopy method from last week? Let's implement it using a list comprehension! 
-
-  \textit{Recall the recursive step of the deepcopy method:}
-  \begin{lstlisting}[language=Python, style=mystyle]
-to_return = [] 
-for i in range(len(lst)): 
-    to_return.append(deep_copy(lst[i]))
-return to_return
-\end{lstlisting}
-
-\end{frame}
-\subsection{Debrief: Complexity Analysis}
+\subsection{Practice Problem II: This ain't Build A ForLoop}
 \begin{frame}
-  \frametitle{Debrief: Complexity Analysis}
-  Hash the following out in your groups:
+  \frametitle{Practice Problem II: This ain't Build A ForLoop}
+  Bella Poarch is working on her next hit single, \textit{Build A ForLoop}. She's trying to create some list comprehensions, but since making list comprehensions isn't smiling on TikTok she's struggling. Help her fill in the following list comprehensions:
+  
   \begin{itemize}
-    \item What is the time complexity of a list comprehension?
-    \item What is the time complexity of the for-loop equivalent of a list comprehension?
-    \item Given the above, which is faster? Why?
-\end{itemize}
+    \item \textbf{Q1:} Create a list comprehension that returns the first 10 even numbers
+    \item \textbf{Q2:} Create a list comprehension that returns the first 10 odd numbers
+    \item \textbf{Q3:} Create a list comprehension that flattens a 2D list
+  \end{itemize}
+  \textit{Hint:} You can chain together iterables
 \end{frame}
 
 \section{Conclusion}
