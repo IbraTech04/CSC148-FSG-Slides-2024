@@ -152,13 +152,9 @@ Today I've tried to mix the two together, but I'd like to know your thoughts.
     \end{columns}
 
 
-    \textbf{Fun Fact:} You can include conditionals in list comprehensions, and items to be added if the condition is not met! Example:
+    \textbf{Fun Fact:} You can include conditionals in list comprehensions, and items to be added if the condition is not met! Example: What would the following list comprehension return?
     \begin{lstlisting}[language=Python, style=mystyle]
-[x**2 for x in range(6) if x % 2 == 0 else x**3]
-    \end{lstlisting}
-    would return a list like this:
-    \begin{lstlisting}[language=Python, style=mystyle]
-[0, 1, 4, 27, 16, 125]
+[x**2 if x % 2 == 0 else x**3 for x in range(6)]
     \end{lstlisting}
 \end{frame}
 
