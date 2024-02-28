@@ -4,3 +4,6 @@ This week is a *relatively* chill week; you talk about *List Comprehensions* in 
 
 ## Solutions: 
 Solutions will be posted **after the FSG**. Nice try, lurkers :P no peeking. That's what .gitignore is for 
+
+## Spotify Scraper:
+The file provided in [spotify_scraper.py](spotify_scraper.py) is a simple script that scrapes the song and its metadata from a playlist I created for this session. It's completely out of the scope of CSC148, and not required for the FSG. I just thought it would be a fun script to include if anyone was curious how I generated the songs used in solutions.py 

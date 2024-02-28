@@ -26,3 +26,6 @@
 *.nav
 *.snm
 *.vrb
+
+# Spotipy cache
+.cache
