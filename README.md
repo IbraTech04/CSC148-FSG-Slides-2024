@@ -13,7 +13,7 @@ If you're feeling a bit lost, don't worry! I've got you covered. Here's a quick 
 4. ???
 5. Profit!
 
-*Note: This same process can be applied for viewing solutions
+*Note: This same process can be applied for viewing solutions*
 
 ### Method 2: "I'm a real one, I want to compile the code from scratch"
 1. Click on the week you're interested in.
