@@ -15,17 +15,21 @@ class Song:
     title: str
     _liked: bool
     genre: str
+    _explicit: bool
+    _popularity: int
     
-    def __init__(self, title: str, liked: bool, genre: str):
+    def __init__(self, title: str, liked: bool, genre: str, explicit: bool = False, popularity: int = 0):
         self.title = title
         self._liked = liked
         self.genre = genre
+        self._explicit = explicit
+        self._popularity = popularity
     
     def is_like(self):
         return self._liked
 
     def __str__(self):
-        return f'Song("{self.title}", {self._liked}, "{self.genre}"), '
+        return f'Song("{self.title}", {self._liked}, "{self.genre}", {self._explicit}, {self._popularity}), '
 
 # Function to authenticate with Spotify API using OAuth
 def authenticate_spotify():
@@ -58,7 +62,7 @@ def extract_playlist_songs(playlist_url: str):
     results = sp.playlist_tracks(playlist_id)
     
     songs = []
-    for item in results["tracks"]['items']:
+    for item in results['items']:
         track = item['track']
         title = track['name']
         # Get whether the song is liked from the user library
@@ -68,14 +72,14 @@ def extract_playlist_songs(playlist_url: str):
         genre = artist['genres'][0] if artist['genres'] else ""
         # Format genre to have consistent capitalization
         genre = genre.capitalize()
-        songs.append(Song(title, liked, genre))
+        songs.append(Song(title, liked, genre, track['explicit'], track['popularity']))
     
     return songs
 
 
 # Example usage
 if __name__ == "__main__":
-    playlist_url = "https://open.spotify.com/playlist/1VrPlCMtYByylvqKWYqlK2?si=1a47c5d6b0684ad6"
+    playlist_url = "https://open.spotify.com/playlist/0OXpsyz2OGbiQZGKiINZUz"
     
     songs = extract_playlist_songs(playlist_url)
 
