@@ -25,7 +25,7 @@ class TreeNode:
   """
   # Implementation omitted; Assume it's a standard TreeNode class
   
-    def lst2tree(cls, lst: list[Union[int, list]]) -> TreeNode:
+    def lst2tree(self, lst: list[Union[int, list]]) -> TreeNode:
         """
         Class method which creates a tree from a nested list
         This method should return the root node of the tree
