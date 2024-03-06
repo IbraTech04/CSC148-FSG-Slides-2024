@@ -34,6 +34,7 @@ class TreeNode:
     def tree2list(self) -> list[Union[int, list]]:
         """
         Method which creates the nested list representation of the tree
+        Precondition: Assume this tree is NOT a cycle
         """
         # TODO: Implement this method
 ```
