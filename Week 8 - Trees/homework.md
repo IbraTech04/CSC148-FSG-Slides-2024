@@ -1,3 +1,5 @@
+# Week 8 Homework
+
 Here, there are two homework problems. Unfortunately, today's FSG was a bit all over the place so I've provided you with two problems; One that you should be able to solve (at least partially) now, and one that you can attempt, but might not be able to solve until after next week's content.
 
 **1. (The one you can attempt) Lst2Tree:** We know from our knowledge from lecture that nested lists can be used to represent trees. We also know that trees can be represented as nested lists. This is a very powerful concept, and we can use it to convert a nested list into a tree, and vice versa.
