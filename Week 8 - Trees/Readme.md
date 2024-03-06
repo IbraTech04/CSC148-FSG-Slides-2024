@@ -10,6 +10,6 @@ This week, I've assigned you a question from my CSC148 Practice Exam from Summer
 This is definitely a "worst case scenario"-exam type of question, but is still a good exercise to test your understanding of the material.
 
 ## Solutions:
-Solutions to the practice problems will be posted **AFTER** the FSG. No peeking!
+Solutions to the practice problems are posted in [solutions.md](solutions.md). Solutions to homework problems will be posted after the homework is due.
 
 **NOTE:** All solutions are provided outside FSG hours, and are not endorsed neither explicitly nor implicitly by the UTM RGASC, or the CSC148 teaching staff. These solutions are meant to be used as a reference, and not a replacement for the problem solving process. You are encouraged to attend office hours and ask questions during lectures if there are any parts of the solution that you do not understand.
