@@ -5,7 +5,7 @@ This week in CSC148 is arguably one of the most important and biggest weeks; You
 This week is very important since you're going to be introduced to a lot of new concepts, and it's super important that you understand and relate them back to recursion; The rest of the course will continue to expand and focus on these concepts, so it's important that you understand them well.
 
 ## Homework:
-This week, I've assigned you a question from my CSC148 Practice Exam from Summer 2023. It's too big to fit on the slides, so I've included it in the [homework.py](homework.py) file. 
+This week, I've assigned you a question from my CSC148 Practice Exam from Summer 2023. It's too big to fit on the slides, so I've included it in the [homework.md](homework.md) file. 
 
 This is definitely a "worst case scenario"-exam type of question, but is still a good exercise to test your understanding of the material.
 
