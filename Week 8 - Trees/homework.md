@@ -24,14 +24,6 @@ class TreeNode:
   Class representing a node in a tree
   """
   # Implementation omitted; Assume it's a standard TreeNode class
-  
-    def lst2tree(self, lst: list[Union[int, list]]) -> TreeNode:
-        """
-        Class method which creates a tree from a nested list
-        This method should return the root node of the tree
-        Precondition: Assume lst is a valid nested list representation of a tree
-        """
-        # TODO: Implement this method
 
     def tree2list(self) -> list[Union[int, list]]:
         """
@@ -39,6 +31,14 @@ class TreeNode:
         Precondition: Assume this tree is NOT a cycle
         """
         # TODO: Implement this method
+  
+def lst2tree(lst: list[Union[int, list]]) -> TreeNode:
+    """
+    Class method which creates a tree from a nested list
+    This method should return the root node of the tree
+    Precondition: Assume lst is a valid nested list representation of a tree
+    """
+    # TODO: Implement this method
 ```
 
 **2. (The one based on next week; you can still attempt it though!) Chicago Med’s File Problem:** *Dr. Choi* is facing a challenging problem with organizing his medical files. His computer's hard drive contains a complex arrangement of directories and files, forming a *tree-like hierarchical structure.* However, he's noticed that there are numerous duplicate entries scattered throughout this structure, leading to unnecessary clutter and confusion.
