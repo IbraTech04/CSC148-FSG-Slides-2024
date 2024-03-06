@@ -1,6 +1,1 @@
-# Ignore everything
-*
-
-# Except readme.md
-!readme.md
-!.gitignore
+solutions.py
