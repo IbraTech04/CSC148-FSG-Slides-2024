@@ -27,6 +27,7 @@ class TreeNode:
         """
         Class method which creates a tree from a nested list
         This method should return the root node of the tree
+        Precondition: Assume lst is a valid nested list representation of a tree
         """
         # TODO: Implement this method
 
