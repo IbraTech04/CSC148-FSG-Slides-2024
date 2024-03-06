@@ -1,8 +1,45 @@
-**Chicago Med’s File Problem:** *Dr. Choi* is facing a challenging problem with organizing his medical files. His computer's hard drive contains a complex arrangement of directories and files, forming a *tree-like hierarchical structure.* However, he's noticed that there are numerous duplicate entries scattered throughout this structure, leading to unnecessary clutter and confusion.
+Here, there are two homework problems. Unfortunately, today's FSG was a bit all over the place so I've provided you with two problems; One that you should be able to solve (at least partially) now, and one that you can attempt, but might not be able to solve until after next week's content.
+
+**1. (The one you can attempt) Lst2Tree:** We know from our knowledge from lecture that nested lists can be used to represent trees. We also know that trees can be represented as nested lists. This is a very powerful concept, and we can use it to convert a nested list into a tree, and vice versa.
+
+Implement the following two methods in the `Tree` class. The first is an initializer that initializes a tree from a nested list. The second is a method that returns the tree's representation as a nested list.
+
+Recall that:
+
+`[1, [2, [3], [4]], [5, [6], [7]]]` is a nested list representation of the following tree:
+
+```
+    1
+   / \
+  2   5
+ / \ / \
+3  4 6  7
+```
+
+```python
+class TreeNode:
+  """
+  Class representing a node in a tree
+  """
+  # Implementation omitted; Assume it's a standard TreeNode class
+  
+    def lst2tree(cls, lst: list[Union[int, list]]) -> TreeNode:
+        """
+        Class method which creates a tree from a nested list
+        This method should return the root node of the tree
+        """
+        # TODO: Implement this method
+
+    def tree2list(self) -> list[Union[int, list]]:
+        """
+        Method which creates the nested list representation of the tree
+        """
+        # TODO: Implement this method
+```
+
+**2. (The one based on next week; you can still attempt it though!) Chicago Med’s File Problem:** *Dr. Choi* is facing a challenging problem with organizing his medical files. His computer's hard drive contains a complex arrangement of directories and files, forming a *tree-like hierarchical structure.* However, he's noticed that there are numerous duplicate entries scattered throughout this structure, leading to unnecessary clutter and confusion.
 
 To address this issue, Dr. Choi needs assistance in developing a script that will efficiently *remove all duplicate file entries from his directory tree.* Your task is to implement a method that takes the root node of this file system tree as input and eliminates all duplicate file entries, ensuring that each unique file is retained only once. *You can assume the first entry of the file you find is the one to be kept.*
-
-
 
 ```python
 from __future__ import annotations
