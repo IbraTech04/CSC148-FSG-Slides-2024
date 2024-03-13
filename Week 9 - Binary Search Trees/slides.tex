@@ -8,6 +8,7 @@
 \usepackage{tikz}
 \usepackage{forest}
 \usepackage{qrcode}
+\usepackage{graphicx}
 
 
 \mode<presentation>
@@ -123,6 +124,16 @@
   \end{enumerate}
 \end{frame}
 
+\begin{frame}
+  \frametitle{FSG HouseKeeping (Cont'd)}
+  \textbf{Ramadan Kareem to all those observing!}\\
+  \textit{Ramadan is the ninth month of the Islamic calendar, observed by Muslims worldwide as a month of fasting, prayer, reflection and community. A commemoration of Muhammad's (pbuh) first revelation, the annual observance of Ramadan is regarded as one of the Five Pillars of Islam and lasts twenty-nine to thirty days, from one sighting of the crescent moon to the next.} \\
+  \centering
+  \begin{figure}
+    \includegraphics[width=0.5\textwidth]{ramadan_kareem.jpg}
+    \caption{Image courtsey of \href{www.czechleaders.com}{www.czechleaders.com}}    
+  \end{figure}
+\end{frame}
 
 \subsection{A Recap of the UltraSheet\texttrademark{}}
 \begin{frame}{A Recap of the UltraSheet\texttrademark{}}
@@ -341,14 +352,22 @@
   
   \onslide<1->\textbf{What kinds of questions have I been focusing on during the FSGs?} \\
   \onslide<1->\textit{Type 1, 2, or 3?} \\
-  \onslide<2->I've mostly been drilling you on \textit{Type 3} questions, since they've been the most relevant to the content. However, Trees have a lot of \textit{Type 1 and Type 2} potential, so this next activity will focus on those.\\
+  \onslide<2->I've mostly been drilling you on \textit{Type 3} questions! \\
+  \onslide<2->However, Trees have a lot of \textit{Type 1 and Type 2} potential, so this next activity will focus on those.\\
 \end{frame}
 
 \begin{frame}
   \frametitle{Practice Problem II: TreeTheory}
   \textbf{Question:} \\
-  Consider an arbitrary binary tree of size $n$ (i.e: $n$ nodes). What is the maximum number of leaves that a binary tree of size $n$ can have? What is the minimum number of leaves that a binary tree of size $n$ can have? \\
+  Consider an arbitrary binary tree of height $n$. What is the maximum number of leaves that a binary tree of height $n$ can have? What is the minimum number of leaves that a binary tree of size $n$ can have? \\
   \textit{Hint: Consider when the maximum amount of subtrees is achieved, and when the minimum amount of subtrees is achieved.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Practice Problem II: TreeTheory}
+  \textbf{Question:} \\
+  Consider an arbitrary Binary Tree of size $n$. What is the maximum height $h_1$ that can be achieved? What is the minimum height $h_2$ that can be achieved? Justify your answer. \\
+  \textit{Hint: Consider modelling a few examples of arbitrary size $n$ and see if you can find a pattern.}
 \end{frame}
 
 \begin{frame}
@@ -363,6 +382,42 @@
   \frametitle{Practice Problem II: TreeTheory}
   \textbf{Question:} \\
   You are working on a new sorting algorithm known as \textit{IbraSort. IbraSort} works by first inserting all the elements into a \textit{Binary Search Tree}, and then performing an \textit{In-Order Traversal} to retrieve the sorted elements. What is the time complexity of \textit{IbraSort}? Is it ever possible for \textit{IbraSort} to have a complexity of $\mathcal{O}(n \log n)$? Why or why not?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Practice Problem II: TreeTheory}
+  \textbf{Question:} \\
+  Consider an arbitrary \textit{Binary Tree}. Given it's preorder traversal and postorder traversal, is it possible to reconstruct the tree? Why or why not? What if we consider a \textit{BST} instead? \\
+\end{frame}
+
+\section{A Final Challenge}
+\begin{frame}[fragile]
+  \frametitle{A Final Challenge}
+  \textbf{Homework, anyone? :)} \textit{Does anyone do these anyway?} \\
+  We know that given the pre-order and post-order traversals of an arbitrary tree, we \textbf{cannot} reconstruct the original tree without additional information. However, as we discovered today, this is not the case with \textit{BSTs}. \\
+  \textbf{Your Challenge:} \\
+  Given the \textit{postorder} representation of a \textit{BST}, write a function that reconstructs the original \textit{BST}. \\
+  Can the same be done for the \textit{preorder} representation? What about its \textit{in-order} Why or why not? \\
+  \begin{lstlisting}[language=Python, style=mystyle]
+class BinarySearchTree:
+    # Implementation omitted, see course notes
+  
+def reconstruct_bst(postorder: List[int]) -> BinarySearchTree:
+    # TODO: Implement this function
+  \end{lstlisting}
+  \textit{Hint: Consider the properties of postorder traversal, and the properties of a BST.} \\ \textit{Hint \#2: Consider using a helper function to help you recurse through the list.} \\ \textit{Hint \#3: Consider AVL Trees for Pt 3 of this question}
+
+\section{Conclusion}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Thank you for coming!}
+  \centering
+  \begin{figure}
+    \includegraphics[width=0.5\textwidth]{that's_all_folks.jpeg}
+    \caption{Image courtsey of Looney Tunes\texttrademark{} and Warner Bros.\texttrademark{}}
+  \end{figure}
+
 \end{frame}
 
 \end{document}
