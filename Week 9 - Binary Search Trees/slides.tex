@@ -1,0 +1,368 @@
+\documentclass[hyperref={colorlinks,citecolor=blue,linkcolor=blue,urlcolor=blue}, aspectratio=1610]{beamer}
+\usepackage{xcolor}
+\usepackage{pgfpages}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage{forest}
+\usepackage{qrcode}
+
+
+\mode<presentation>
+{
+  \usetheme{Madrid}       % or try default, Darmstadt, Warsaw, ...
+  \usecolortheme{beaver} % or try albatross, beaver, crane, ...
+  \usefonttheme{structurebold}    % or try default, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+% \pgfpagesuselayout{resize to}[%
+%   physical paper width=8in, physical paper height=6in]
+
+\title[IbraFSG 5: BSTs and Tree Traversals]{IbraFSG\texttrademark{} 5 - Week 9; BSTs and Tree Traversals}
+
+
+\author{Ibrahim Chehab}
+\institute{UTM RGASC}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Table of Contents}
+  \tableofcontents
+\end{frame}
+
+\section{Introduction}
+
+\subsection{Welcome back to IbraFSGs\texttrademark{}}
+\begin{frame}
+  \frametitle{Welcome back to IbraFSGs\texttrademark{}}
+  \begin{itemize}
+  \item Welcome back to IbraFSGs\texttrademark{}! Hello to new people and welcome back to tenured members.
+  \item This week we will be further discussing Trees and Recurisve Data Structures, and their relations to \textit{Binary Search Trees} (BSTs) and \textit{Tree Traversals}
+  \item Trees are a main character in the remainder of the course, and will reappear in CSC236 and CSC263.
+  \item There are several types of trees:
+  \begin{itemize}
+    \item Binary Trees/Binary Search Trees (BSTs)
+    \item AVL Trees [Also known as a self-balancing BST]
+    \item Abstract Syntax Trees (ASTs) [also known as Expression Trees]
+    \item Heaps
+  \end{itemize}
+  \item CSC148 Only Focuses on Binary Trees, BSTs, ASTs, and Traditional Trees
+  \begin{itemize}
+    \item On my exam last year, we had a question about cycles 
+    \item The idea is, since you have an introductory idea of basic graphs (through trees), cycles are a natural extension of that - And thus fair game*
+  \end{itemize}
+\end{itemize}
+\small{\textit{*Will they give you a question about cycles? Probably not, but it's good to know the concept.}}
+\end{frame}
+
+\subsection{FSG HouseKeeping}
+\begin{frame}
+  \frametitle{FSG HouseKeeping}
+  \begin{enumerate}
+    \item \textbf{Reminder that a new FSG Session has been added:}
+    \textit{Fridays 12:00-1:00 in IB210}
+    \\
+    \textit{Note: This session is not run by myself, rather another FSG Leader. It is still a very useful resource nonetheless}
+    \item \textbf{The Second Midterm is coming up!} That's right! The second midterm is approaching us quickly (March $25^{th}$ 2024) Better start studying, maybe with\ldots
+    \item \ldots\textbf{The Second Midterm FSG Is Coming Soon!} Stay tuned for more details!
+    \item \textbf{Reminder that FSG Slides Are Posted!} That's right! All FSG Slides are posted on my GitHub page. You can find them here: \href{https://github.com/IbraTech04/FSG-Slides}{https://github.com/IbraTech04/FSG-Slides}
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{FSG HouseKeeping (Cont'd)}
+  \textbf{QR Code for FSG Slides:}
+  \begin{center}
+    \qrcode[height=2in]{https://github.com/IbraTech04/FSG-Slides} \\
+    \textit{https://github.com/IbraTech04/FSG-Slides}
+  \end{center}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{FSG HouseKeeping (Cont'd)}
+  \begin{enumerate} \setcounter{enumi}{5}
+    \item \textbf{New Study Session Drop Ins!} \\ Feeling Stressed about exams? Don't know where to start? Drop by the MN3260 for a study skills session! 
+    \begin{itemize}
+      \item \textbf{When:} March $20^{th}$ 10-11AM, March $27^{th}$ 3-4PM, and April $3^{rd}$ 1-2PM
+      \item \textbf{Where:} MN3260
+    \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+
+\subsection{A Recap of the UltraSheet\texttrademark{}}
+\begin{frame}{A Recap of the UltraSheet\texttrademark{}}
+  \begin{itemize}
+    \item An \textit{UltraSheet\texttrademark{}} is a "cheat sheet" that you compile for \textbf{yourself} to review course materials 
+    \begin{itemize}
+      \item Sharing UltraSheets\texttrademark{} is \textbf{counter-productive} and \textbf{will not help you learn the material}
+      \item However, reviewing content in a group and simultaneously updating your UltraSheets\texttrademark{} is a good idea
+    \end{itemize}
+    \item It acts like your own personalized textbook chapter
+    \begin{itemize}
+      \item It allows you to \textbf{regurgitate all the course information in a contigous, organized manner} and helps you \textbf{find gaps in your knowledge}
+    \end{itemize}
+    \item UltraSheets\texttrademark{} help with type 1 and 2 questions 
+    \begin{itemize}
+      \item Can you remember what type 1 and 2 questions are?
+      \item Can you remember what a \textit{type 3} question is? :troll:
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\section{Trees and Recursive Data Structures}
+
+\subsection{Key Terms}
+\begin{frame}{Key Terms}
+  \textbf{Required Key Terms:} The following key terms are required for this week's content. You should be able to define and explain these terms in your UltraSheets\texttrademark{}:
+  \begin{itemize}
+    \item \textbf{Pre-order Traversal}
+    \item \textbf{Post-order Traversal} 
+    \item \textbf{Level-order Traversal} 
+    \item \textbf{In-order Traversal} 
+    \begin{itemize}
+      \item \textbf{Note:} In-order Traversal is the most important traversal for BSTs
+      \item \textit{Can In-Order Traversal be done on a non-BT? Why or why not?}
+    \end{itemize}
+    \item \textbf{Binary Search Tree (BST):} A special kind of binary tree that has the following properties:
+    \textbf{The four properties of a BST:}
+    \begin{itemize}
+      \item The left subtree of a node contains only nodes with keys less than the node's key
+      \item The right subtree of a node contains only nodes with keys greater than the node's key
+      \item The left and right subtree each must also be a binary search tree - If the \texttt{root} is not \texttt{None}
+      \item Each subtree must have \textbf{at most} two children
+    \end{itemize}
+    \item Note: Duplicates in Binary Trees usually depend on the implementation
+    \begin{itemize}
+      \item In your case; You would need to check the question carefully to see if duplicates are allowed, and whether or not that will affect your traversal
+      \item Common Places to check: Preconditions, Rerepsentation Invariants, context-cues in the question
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Key Terms (Cont'd)}
+    \textbf{Suggested Key Terms:} The following key terms are \textit{recommended} for further studying this week's content. Most are out of the scope of the course and are \textbf{not} required, but are fun for extra learning:
+
+    \begin{itemize}
+      \item \textbf{\href{https://www.youtube.com/watch?v=mGF61O21W-c}{AVL Tree:} }A special kind of BST that is self-balancing - Guaranatees $\mathcal{O}(\log n)$ time complexity for all operations
+      \begin{itemize}
+        \item \textbf{Why is this important?} Keep this in the back of your head for an upcoming activity ;D
+      \end{itemize}
+      \item \textbf{Balancing Factor: }Useful in CSC263 when talking about \textit{AVL Trees}. Denotes the difference in height between the left and right subtrees of a node, and is used to determine what \textit{rotation} is required to re-balance the tree
+      \begin{itemize}
+        \item Don't worry about this if it doesn't make sense; 
+        \item Again, it's out of the scope of the course. Just a fun fact \textbf{if} you want to learn more 
+      \end{itemize}
+      \item \textbf{Breadth-first Search (BFS): }A graph traversal algorithm that visits all nodes at the current depth before moving to the next depth
+      \item \textbf{Depth-first Search (DFS): }A graph traversal algorithm that visits all nodes in a branch before moving to the next branch
+    \end{itemize}
+\end{frame}
+
+
+\section{Practice Problems}
+\subsection{Practice Problem I: TraversalOverflow}
+
+\begin{frame}[fragile]
+  
+  \frametitle{Practice Problem I: TraversalOverflow}
+  Dipal's computer was hit by a solar flare while he was working on his FSG Homework. As a result, all his trees were converted into their respective list representations. Unfortunately, he doesn't know what kind of traversals were used! He needs your help to match up the list representations with their respective trees.\\
+  
+  \begin{columns}[T]
+  
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item \texttt{5, 3, 10, 7, 11, 8, 9.}
+        \item \texttt{5, 11, 10, 9, 8, 4, 3.}
+        \item \texttt{10, 3, 11, 7, 8, 9, 5.}
+        \item \texttt{10, 3, 11, 4, 8, 9, 5.}
+      \end{enumerate}
+    \end{column}
+    
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \begin{forest}
+          for tree={circle, draw, minimum size=1em, s sep=5mm}
+          [5
+            [3
+              [10]
+              [,phantom]
+            ]
+            [4
+              [,phantom]   
+              [11]
+            ]
+            [8]
+            [9]
+          ]
+        \end{forest}
+      \end{center}
+    \end{column}
+  
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+  
+  \frametitle{Practice Problem I: TraversalOverflow}
+  
+  \begin{columns}[T]
+  
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item \texttt{5, 3, 10, 7, 11, 8, 9.}
+        \item \texttt{9, 10, 8, 5, 3, 7, 11}
+        \item \texttt{10, 3, 11, 7, 8, 9, 5.}
+        \item \texttt{10, 3, 11, 4, 8, 9, 5.}
+      \end{enumerate}
+    \end{column}
+    
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \begin{forest}
+          for tree={circle, draw, minimum size=2em, s sep=5mm}
+          [9
+            [10
+              [5]
+              [3]
+            ]
+            [8
+              [7]   
+              [11]
+            ]
+          ]
+        \end{forest}
+      \end{center}
+    \end{column}
+  
+  \end{columns}
+  
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  
+  \frametitle{Practice Problem I: TraversalOverflow}
+  
+  \begin{columns}[T]
+      \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item \texttt{5, 3, 10, 7, 11, 8, 9. }
+        \item \texttt{9, 10, 8, 5, 3, 7, 11}
+        \item \texttt{10, 3, 11, 7, 8, 9, 5. }
+        \item \texttt{10, 3, 11, 4, 8, 9, 5.}
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{center}
+        \begin{forest}
+          for tree={circle, draw, minimum size=2em, s sep=5mm}
+          [5
+            [7
+              [10]
+              [3]
+              [11]
+            ]
+            [5
+              [,phantom]   
+              [8
+                [,phantom]
+                [9]
+              ]
+            ]
+          ]
+        \end{forest}
+      \end{center}
+    \end{column}
+  
+  
+  \end{columns}
+  
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{TraversalOverflow Debrief}
+  What did you notice with the preoder and postorder traversals of each tree?
+  \begin{itemize}
+    \item Were they unique?
+    \item Were they bijective?
+    \item Was it possible to determine the tree from the traversal, or did you need to reference the tree first?
+  \end{itemize}
+  What does this tell you about the uniqueness of the pre-order and post-order traversals?
+  \begin{itemize}
+    \item Are they unique?
+    \item Can you accurately reconstruct the tree from the traversal? Why or why not? 
+    \item Is there a bijection between the traversal and the tree?
+  \end{itemize}
+  \textit{\textbf{Keep this in the back of your head for the next activity}}
+\end{frame}
+
+\subsection{Practice Problem II: TreeTheory}
+\begin{frame}
+  \frametitle{Practice Problem II: TreeTheory}
+  
+  \onslide<1->\textbf{What kinds of questions have I been focusing on during the FSGs?} \\
+  \onslide<1->\textit{Type 1, 2, or 3?} \\
+  \onslide<2->I've mostly been drilling you on \textit{Type 3} questions, since they've been the most relevant to the content. However, Trees have a lot of \textit{Type 1 and Type 2} potential, so this next activity will focus on those.\\
+\end{frame}
+
+\begin{frame}
+  \frametitle{Practice Problem II: TreeTheory}
+  \textbf{Question:} \\
+  Consider an arbitrary binary tree of size $n$ (i.e: $n$ nodes). What is the maximum number of leaves that a binary tree of size $n$ can have? What is the minimum number of leaves that a binary tree of size $n$ can have? \\
+  \textit{Hint: Consider when the maximum amount of subtrees is achieved, and when the minimum amount of subtrees is achieved.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Practice Problem II: TreeTheory}
+  \textbf{Question:} \\
+  Consider the \texttt{search} operation for a \textit{Binary Search Tree}. What is the \textbf{worst case} time complexity for the \texttt{search} operation? When does it happen? Give an example of a tree that would cause this to happen. \\
+  Are BST operations \textit{in general} always $\mathcal{O}(\log n)$? Why or why not? \\
+  \textit{Hint: Recall our discussion about the \textit{Balancing Factor} and \textit{AVL Trees} earlier in the slides.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Practice Problem II: TreeTheory}
+  \textbf{Question:} \\
+  You are working on a new sorting algorithm known as \textit{IbraSort. IbraSort} works by first inserting all the elements into a \textit{Binary Search Tree}, and then performing an \textit{In-Order Traversal} to retrieve the sorted elements. What is the time complexity of \textit{IbraSort}? Is it ever possible for \textit{IbraSort} to have a complexity of $\mathcal{O}(n \log n)$? Why or why not?
+\end{frame}
+
+\end{document}
