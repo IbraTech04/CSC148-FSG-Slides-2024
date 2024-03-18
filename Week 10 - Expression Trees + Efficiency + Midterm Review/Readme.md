@@ -10,7 +10,7 @@ This week is a bit different from the others, as we'll be focusing on the midter
 
 ## Homework:
 
-This weeks homework is a bit more *intense* than usual. I've set it up like an actual CSC148 Assignment. You can find it in the [homework.md](Homework/homework.md) file. Homework will be posted **after** the FSG and will be due on the day epoch overflows on 32-bit systems (i.e: January 19, 2038).
+This weeks homework is a bit more *intense* than usual. I've set it up like an actual CSC148 Assignment. You can find it in the [homework.md](Homework/readme.md) file. Homework will be posted **after** the FSG and will be due on the day epoch overflows on 32-bit systems (i.e: January 19, 2038).
 
 The basic gyst is: you'll be making a derivative calculator using Expression Trees. You'll be given a few functions to implement, and you'll be given a few helper functions to help you along the way. You'll also be given a few test cases to help you test your code.
 
