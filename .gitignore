@@ -29,3 +29,7 @@
 
 # Spotipy cache
 .cache
+
+*.idea
+
+*__pycache__

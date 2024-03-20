@@ -1,7 +1,3 @@
-*Note: Week 10 hasn't happened yet, so the following is incomplete.
-
-🫣🫣🫣Hey! No Peeking!🙈🙈🙈
-
 # Week 10: Expression Trees + Efficiency + Midterm Review
 
 This week, we'll be quickly glancing over *Expression Trees* before moving onto the *Midterm Review*. We'll be covering the most important topics of the last 5 weeks (Weeks 5-10), along with important study tips, common tricks placed in questions, and my predictions for the midterm.

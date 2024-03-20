@@ -1,0 +1,417 @@
+\documentclass[hyperref={colorlinks,citecolor=blue,linkcolor=blue,urlcolor=blue}, aspectratio=1610]{beamer}
+\usepackage{xcolor}
+\usepackage{pgfpages}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage{forest}
+\usepackage{qrcode}
+\usepackage{graphicx}
+
+
+\mode<presentation>
+{
+  \usetheme{Madrid}       % or try default, Darmstadt, Warsaw, ...
+  \usecolortheme{beaver} % or try albatross, beaver, crane, ...
+  \usefonttheme{structurebold}    % or try default, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+% \pgfpagesuselayout{resize to}[%
+%   physical paper width=8in, physical paper height=6in]
+
+\title[IbraFSG 6: Midterm 2]{IbraFSG\texttrademark{} 6 - Week 10; Expression Trees and Midterm Review}
+
+
+\author{Ibrahim Chehab}
+\institute{UTM RGASC}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Table of Contents}
+  \tableofcontents
+\end{frame}
+
+\section{Introduction}
+
+\subsection{FSG HouseKeeping}
+\begin{frame}
+  \frametitle{FSG HouseKeeping}
+  \begin{enumerate}
+    \item \textbf{Reminder that a new FSG Session has been added:}
+    \begin{itemize}
+      \item \textbf{When?} \textit{Fridays, 12:00-1:00PM}
+      \item \textbf{Where?} \textit{IB210}
+    \end{itemize}
+    \pause
+    \item \textbf{Assignment 2 Deadline Coming Up!} Assignment 2 is due on April 3rd! Make sure you're actively working on it!
+    \pause
+    \item \textbf{New Study Session Drop Ins!} \\ Feeling Stressed about exams? Don't know where to start? Drop by the MN3260 for a study skills session! 
+    \begin{itemize}
+      \item \textbf{When:} March $20^{th}$ 10-11AM, March $27^{th}$ 3-4PM, and April $3^{rd}$ 1-2PM
+      \item \textbf{Where:} MN3260
+    \end{itemize}
+    \pause
+    \item \textbf{Join the UTM CS Discord Server!} \url{https://discord.gg/utmcs}
+  \end{enumerate}
+
+\end{frame}
+
+\subsection{Welcome back to IbraFSGs\texttrademark{}}
+\begin{frame}
+  \frametitle{Welcome back to IbraFSGs\texttrademark{}}
+  \begin{itemize}
+  \item Welcome back to IbraFSGs\texttrademark{}! Hello to new people and welcome back to tenured members.
+  \item This week we will be quickly going over expression trees, and then going over content for your midterms
+  \item There are several use cases for expression trees:
+  \begin{itemize}
+    \item Evaluating expressions (duh...)
+    \item Integral/Derivative calclators (Symbolab and Wolfram Alpha are just big expression trees)
+    \item Rendering out a canvas/timeline in creative applications (Photoshop, Premiere, etc.)
+    \item Engineering simulations
+    \begin{itemize}
+      \item Electrical Circuit Analysis
+      \item Fluid Dynamics
+      \item Computational Chemistry and Physics
+      \item Structural Analysis
+    \end{itemize}
+    \item Compiling and optimizing source code
+  \end{itemize}
+  \pause
+  \item \textbf{Note:} Memorize at least one of the above use cases for the midterm - Oftentimes a question is \textit{What is a use case for expression trees?}
+
+\end{itemize}
+\end{frame}
+
+\subsection{A Recap of the UltraSheet\texttrademark{}}
+\begin{frame}{A Recap of the UltraSheet\texttrademark{}}
+  \begin{itemize}
+    \item An \textit{UltraSheet\texttrademark{}} is a "cheat sheet" that you compile for \textbf{yourself} to review course materials 
+    \begin{itemize}
+      \item Sharing UltraSheets\texttrademark{} is \textbf{counter-productive} and \textbf{will not help you learn the material}
+      \item However, reviewing content in a group and simultaneously updating your UltraSheets\texttrademark{} is a good idea
+    \end{itemize}
+    \item It acts like your own personalized textbook chapter
+    \begin{itemize}
+      \item It allows you to \textbf{regurgitate all the course information in a contiguous, organized manner} and helps you \textbf{find gaps in your knowledge}
+      \item You should \textbf{not} be copying the textbook or lecture slides verbatim; You should be \textbf{summarizing} the content in your own words while tying in examples and analogies
+    \end{itemize}
+    \item UltraSheets\texttrademark{} help with type 1 and 2 questions 
+  \item With your midterm coming up, you should have at least one UltraSheet\texttrademark{} for each week of content, or at least the content you're struggling with
+  \end{itemize}
+
+\end{frame}
+
+\section{Expression Trees}
+
+\subsection{Key Terms}
+\begin{frame}{Key Terms}
+  \textbf{Required Key Terms:} The following key terms are required for this week's content. You should be able to define and explain these terms in your UltraSheets\texttrademark{}:
+  \begin{itemize}
+    \item \textbf{Expression}
+    \item \textbf{Expression Tree}
+    \item \textbf{In-Order Traversal}
+    \begin{itemize}
+      \item \textbf{Note:} Not all expression trees are binary; However most expression trees in this course will be binary
+    \end{itemize}
+  \item \textbf{Polymorphism}
+  \begin{itemize}
+    \item \textbf{Why?} Expression Trees abuse Polymorphism to exist
+  \end{itemize}
+  \end{itemize}
+\end{frame}
+
+% Slide omitted - will be kept for next week
+
+% \begin{frame}{Key Terms (Cont'd)}
+%     \textbf{Suggested Key Terms:} The following key terms are \textit{recommended} for further studying this week's content. Most are out of the scope of the course and are \textbf{not} required. We don't have time to cover these today, we will be focusing on the midterm review.
+
+%     \begin{itemize}
+%       \item \textbf{Big-O Notation ($\mathcal{O}(n)$)}
+%       \begin{itemize}
+%         \item Upper Bound
+%         \item A function $f(n)$ is $\mathcal{O}(g(n))$ if there exists a constant $c > 0$ and $n_0 > 0$ such that $f(n) \leq c \cdot g(n)$ for all $n \geq n_0$
+%       \end{itemize}
+%       \item \textbf{Big-Omega Notation ($\Omega(n)$)}
+%       \begin{itemize}
+%         \item Lower Bound
+%         \item A function $f(n)$ is $\Omega(g(n))$ if there exists a constant $c > 0$ and $n_0 > 0$ such that $f(n) \geq c \cdot g(n)$ for all $n \geq n_0$
+%       \end{itemize}
+%       \item \textbf{Big-Theta Notation ($\Theta(n)$)}
+%       \begin{itemize}
+%         \item Tight Bound
+%         \item A function $f(n)$ is $\Theta(g(n))$ if and only if $f(n)$ is $\mathcal{O}(g(n))$ and $f(n)$ is $\Omega(g(n))$
+%         \item In other words; $f(n)$ is $\Theta(g(n))$ if and only if there exist constants $c_1 > 0$, $c_2 > 0$, and $n_0 > 0$ such that $c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n)$ for all $n \geq n_0$
+%       \end{itemize}
+%     \end{itemize}
+%     \textbf{Note:} These are CSC236 concepts, and are \textbf{not} required for CSC148. I am including these to complement your lecture on efficiency and complexity this week.
+% \end{frame}
+
+\section{Midterm Tips and Tricks}
+\subsection{Key Concepts}
+
+\begin{frame}
+  \frametitle{Key Concepts - My Thoughts} 
+  The ultimate take-aways from Weeks 5-10 are as follows:
+  \begin{enumerate}
+    \item \textbf{Recursion}
+    \pause
+    \item \textbf{List Comprehensions}
+    \pause
+    \item \textbf{Trees}
+    \pause
+    \item \textbf{Efficiency and Complexity}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Key Concepts - My Thoughts (Cont'd)} 
+  The ultimate take-aways from Weeks 5-10 are as follows:
+  \begin{enumerate}
+    \item \textbf{Recursion}
+    \begin{itemize}
+      \item Base Case
+      \item Recursive Case
+      \item My Recursion Analogy
+    \end{itemize}
+    \item \textbf{List Comprehensions}
+    \begin{itemize}
+      \item Syntax
+      \item Use Cases
+      \item Chaining/Composition
+    \end{itemize}
+    \item \textbf{Trees}
+    \begin{itemize}
+      \item Traversals
+      \item BSTs vs BTs
+      \item Efficiency and Complexity
+    \end{itemize}
+    \item \textbf{Efficiency and Complexity}
+    \begin{itemize}
+      \item How do we measure efficiency?
+      \item Big-O Notation
+      \item Recursive Efficiency
+    \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+\subsection{Type 1, 2, and 3 Questions}
+\begin{frame}
+  \frametitle{Type 1, 2, and 3 Questions}
+  You've often heard me refer to \textit{Type 1, 2, and 3} questions. What do I mean by this? \\ \pause
+  \begin{itemize}
+    \item \textbf{Type 1:} \textit{Theory-based questions}
+    \begin{itemize}
+      \item These questions are typically pulled straight out of notes/lecture slides
+      \item These questions are typically multiple choice or short answer
+      \item Study for them using your UltraSheets\texttrademark{}
+    \end{itemize}
+    \pause 
+    \item \textbf{Type 2:} \textit{Knowledge-based questions}
+    \begin{itemize}
+      \item These questions typically build off of Type 1 questions, and usually require you to have a strong understanding of the material. They require you to reflect on what you learned in lecture + preps
+      \item These questions are typically short answer or long answer
+      \item Study for them using your UltraSheets\texttrademark{}
+    \end{itemize}
+    \pause
+    \item \textbf{Type 3:} \textit{Application-based questions}
+    \begin{itemize}
+      \item These questions typically require you to apply your knowledge to a new problem
+      \item These questions are typically long answer
+      \item Study for them by practicing problems
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\subsection{Midterm-taking Strategies}
+\begin{frame}
+  \frametitle[Midterm-taking Strategies]{Midterm-taking Strategies}
+  \begin{enumerate}
+    \item \textbf{Preflight Analysis:}
+    \begin{itemize}
+      \item Quckly skim through the entire exam to see what you're up against. Make mental notes of the questions you know you can answer, and the questions you're unsure about.
+    \end{itemize}
+    \pause
+    \item \textbf{Butterfly Method:}
+    \begin{itemize}
+      \item If you get stuck on a question, go to the next question you can solve (see above). This will help you get into a rhythm and build confidence.
+      \item Sometimes swapping between questions rapidly in succession can help you solve the question you were stuck on.
+    \end{itemize}
+    \pause
+    \item \textbf{Time Management:}
+    \begin{itemize}
+      \item Allocate time for each question based on the number of marks it's worth. If you're stuck on a question, move on and come back to it later.
+      \item If you're stuck on a question that isn't worth much, skip it and come back to it later. Chances are you're overthinking it.
+      \item Even if you don't end up figuring it out, if it was only worth 1-2 marks, it's not the end of the world. Prioritize the questions worth more marks.
+      \item A question worth more marks $\implies$ it's harder
+    \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+\section{Practice Problems}
+
+\begin{frame}
+  \frametitle{Jamboard Link}
+  \begin{center}
+    \qrcode[height=2in]{https://jamboard.google.com/d/1yhpEvaeEAau7L-e_-YdVWuTNVfsFthu7QRAheAsgm_Y/edit?usp=sharing}\\
+    \url{https://tinyurl.com/ibrafsg0320}\\
+    \textit{0320 for March 20th}\\
+    \textbf{Note:} Don't fool around with the Jamboard, it's for your benefit.
+  \end{center}
+\end{frame}
+
+\subsection{Practice Problem I: TreeTheory Pro Max}
+
+\begin{frame}[fragile]
+  
+  \frametitle{Practice Problem 1.1}
+  Which of the following statements is true? Select all that apply:  
+  \begin{enumerate}
+    \item The in-order traversal of a binary tree is always sorted
+    \item The post-order traversal of a binary search tree \textit{might} be sorted
+    \item The pre-order traversal of a binary tree \textit{might} be sorted
+    \item The pre-order traversal of a binary search tree is always sorted
+    \item \textbf{All} ancestors of a node in a binary search tree are less than the node
+    \item \textbf{All} ancesors of a node in a binary tree \textit{might} be less than the node
+  \end{enumerate}
+  \onslide<2->{
+    \textbf{Pay close attention to the usage of \textit{Binary Search Tree} and \textit{Binary Tree} in questions like these}\\
+    Obviously, we know they are \textbf{NOT} interchangeable, but the question might be trying to trick you.
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Practice Problem 1.2}
+  Given the in-order traversal of an arbitrary binary \textit{search} tree, is it possible to reconstruct the original tree? If so, how? If not, why not?
+  
+  \textit{Hint: Recall our discussion on AVL Trees from last week}\\
+  \textit{Hint 2: Recall your lab on BST rotations}
+
+  \onslide<2->{
+    Consider the two following trees:
+    \begin{center}
+      \begin{forest}
+        [5
+          [3
+            [2]
+            [4]
+          ]
+          [7
+            [6]
+            [8]
+          ]
+        ]
+      \end{forest}
+      \hspace{1cm}
+      \begin{forest}
+        [5
+          [2
+          [,phantom]
+          [3
+            [,phantom]  
+            [4]
+              ]
+          ]
+          [7
+            [8]
+            [6]
+          ]
+        ]
+      \end{forest}
+    \end{center}
+  }
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Practice Problem 1.3}
+  Given a sorted list of integers from $1$ to $n, n \in \mathbb{N} \setminus \{0\}$, how do you construct a balanced binary search tree (i.e: height $\log(n)$) from this list? Outline the order of insertion, and explain why this works.\\
+  \onslide<2->{
+    Hint: Consider what is required for a BST to be balanced
+  }
+
+\end{frame}
+
+\subsection{Practice Problem II: Itr2Recur}
+\begin{frame}[fragile]
+  \frametitle{Practice Problem II: Itr2Recur}
+  Convert the following iterative function to a recursive function:
+
+  \begin{lstlisting}[language=Python, style=mystyle]
+def ibranatchi_iterative(n: int) -> int:
+  if n == 0:
+    return 0
+  elif n == 1:
+    return 1
+  elif n == 2:
+    return 5
+
+  sequence = [0, 1, 5]
+  for i in range(3, n + 1):
+    next_value = sequence[i - 1] * 2 * sequence[i - 2] - 5 * sequence[i - 3]
+    sequence.append(next_value)
+
+  return sequence[-1]
+ 
+def ibranatchi_recursive(n: int) -> int:
+  # TODO: Implement this recursively:
+
+  \end{lstlisting}
+\end{frame}
+
+\subsection{Practice Problem III: List Comprehensions}
+\begin{frame}[fragile]
+  \frametitle{Practice Problem III: List Comprehensions}
+  What is the output of the following list comprehension. If it throws an error, explain why:
+  \begin{lstlisting}[language=Python,style=mystyle]
+    [[x*y for x in range(4)] for y in range(7)]
+  \end{lstlisting}
+  
+  what if we switch the \texttt{x} and \texttt{y} iterables?
+
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}
+  \frametitle{Thank you for coming!}
+  \centering
+  \begin{figure}
+    \includegraphics[width=0.5\textwidth]{that's_all_folks.jpeg}
+    \caption{Image courtsey of Looney Tunes\texttrademark{} and Warner Bros.\texttrademark{}}
+  \end{figure}
+
+  \textbf{Good luck, everyone!}
+\end{frame}
+
+\end{document}
