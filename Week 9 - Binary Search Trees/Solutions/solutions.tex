@@ -1,0 +1,562 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage{lipsum} % For dummy text
+\usepackage{graphicx} % For including images
+\usepackage{amsmath} % For mathematical symbols and equations
+\usepackage[margin=1in]{geometry} % Decrease margins
+\usepackage{forest}
+\usepackage{titlesec}
+% \titleformat{\paragraph}
+% {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+% \titlespacing*{\paragraph}
+% {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+% Title and author
+\title{Solutions to Week 9 Exercises}
+\author{Ibrahim Chehab}
+\usepackage{amsthm} % Add the amsthm package to define the proof environment
+\usepackage{xcolor}
+
+\usepackage{amsmath} % For mathematical symbols and equations
+
+% Ceil command
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Questions from FSG Slides}
+\subsection{TraversalOverflow}
+
+In this problem, you are tasked with matching the trees to their respective traversals.
+\vspace{1cm}\\
+\subsubsection{}
+
+    \begin{minipage}{0.5\textwidth}
+        \begin{enumerate}
+            \item \texttt{5, 3, 10, 7, 11, 8, 9.}
+            \item \texttt{5, 11, 10, 9, 8, 4, 3.}
+            \item \texttt{10, 3, 11, 7, 8, 9, 5.}
+            \item \texttt{10, 3, 11, 4, 8, 9, 5.}
+        \end{enumerate}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \begin{center}
+            \begin{forest}
+                for tree={circle, draw, minimum size=1em, s sep=5mm}
+                [5
+                    [3
+                        [10]
+                        [,phantom]
+                    ]
+                    [4
+                        [,phantom]   
+                        [11]
+                    ]
+                    [8]
+                    [9]
+                ]
+            \end{forest}
+        \end{center}
+    \end{minipage}
+    %slight gap between the two minipages
+    
+    \vspace{1cm}
+
+    \textbf{Solution:} \\
+    Immediately, we can rule out option \texttt{1}, since that traversal includes a \texttt{7}, yet the tree does not. We can also eliminate option \texttt{2}, since it jumps from the \textit{root} directly to a \textit{leaf}, skipping the internal node \texttt{4}. 
+    \\\\
+    This leaves us with options \texttt{3} and \texttt{4}. Once again, we notice option \texttt{3} contains a \texttt{7}, which is not present in the tree. Therefore, the correct answer is option \texttt{4}, where option 4 is a \textit{post-order} traversal of the tree.
+
+    \clearpage
+
+\subsubsection{}
+
+    \begin{minipage}{0.5\textwidth}
+        \begin{enumerate}
+            \item \texttt{5, 3, 10, 7, 11, 8, 9.}
+            \item \texttt{9, 10, 8, 5, 3, 7, 11}
+            \item \texttt{10, 3, 11, 7, 8, 9, 5.}
+            \item \texttt{10, 3, 11, 4, 8, 9, 5.}
+        \end{enumerate}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [9
+                [10
+                    [5]
+                    [3]
+                ]
+                [8
+                    [7]   
+                    [11]
+                ]
+            ]
+        \end{forest}
+    \end{minipage}
+
+    \vspace{1cm}
+    \textbf{Solution:}\\
+    We can immediately eliminate options \texttt{3} and \texttt{4}, because:
+    \begin{itemize}
+        \item Option \texttt{3} is in random order and doesn't follow any traversal known in CSC148H5.
+        \item Option \texttt{4} contains a \texttt{4}, which is not present in the tree.
+    \end{itemize}
+    \vspace{0.5cm}
+    This leaves us with options \texttt{1} and \texttt{2}. We can see that option \texttt{1} is a \textit{post-order} traversal of the tree, while option \texttt{2} is a \textit{level-order} traversal. 
+
+    \subsubsection{}
+
+        \begin{minipage}{0.5\textwidth}
+            \begin{enumerate}
+                \item \texttt{5, 3, 10, 7, 11, 8, 9. }
+                \item \texttt{9, 10, 8, 5, 3, 7, 11}
+                \item \texttt{10, 3, 11, 7, 8, 9, 5. }
+                \item \texttt{10, 3, 11, 4, 8, 9, 5.}
+            \end{enumerate}
+        \end{minipage}%
+        \begin{minipage}{0.5\textwidth}
+            \begin{center}
+                \begin{forest}
+                    for tree={circle, draw, minimum size=2em, s sep=5mm}
+                    [5
+                        [7
+                            [10]
+                            [3]
+                            [11]
+                        ]
+                        [5
+                            [,phantom]   
+                            [8
+                                [,phantom]
+                                [9]
+                            ]
+                        ]
+                    ]
+                \end{forest}
+            \end{center}
+        \end{minipage}
+
+        \vspace{1cm}
+
+        \textbf{Solution:}\\
+        Immediately we can eliminate all the options because none of them have two \texttt{5}s in the tree. Hence, this question has no answer. 
+    
+    \clearpage
+    \subsection{TreeTheory}
+    In this problem, you are tasked with answering questions about trees.
+
+    \subsubsection{}
+    Consider an arbitrary binary tree of height $n$. What is the maximum number of leaves that a binary tree of height $n$ can have? What is the minimum number of leaves that a binary tree of height $n$ can have? \\
+
+    \textbf{Solution:}\\
+    Like all theory questions, it is important to first draw out some examples. This strategy will help you in upper-year courses (Especially CSC236). 
+
+    Clearly, the minimum number of leaves a binary tree of height $n$ can have is $1$. This is because a tree of height $n$ can be a single node, which is a leaf. $1$ leaf can also occur if every node in the tree has one child (i.e: The tree is a glorified linked list).
+
+    For the maximum number of leaves, we can see this happens when the tree is a \textit{complete} binary tree. A complete binary tree is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible. Let's draw a few examples and see if we can find a pattern.
+
+    \textbf{Height 1:} 1 leaf.\\
+    \begin{center}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [1]
+        \end{forest}        
+    \end{center}
+
+    \textbf{Height 2:} 2 leaves.\\
+    \begin{center}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [1
+                [2]
+                [3]
+            ]
+        \end{forest}
+    \end{center}
+
+    \textbf{Height 3:} 4 leaves.\\
+    \begin{center}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [1
+                [2
+                    [4]
+                    [5]
+                ]
+                [3
+                    [6]
+                    [7]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+
+    \textbf{Height 4:} 8 leaves.\\
+    \begin{center}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [1
+                [2
+                    [4
+                        [8]
+                        [9]
+                    ]
+                    [5
+                        [10]
+                        [11]
+                    ]
+                ]
+                [3
+                    [6
+                        [12]
+                        [13]
+                    ]
+                    [7
+                        [14]
+                        [15]
+                    ]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+
+    We can quickly see that the number of leaves in a complete binary tree of height $n$ is $2^{n-1}$. Therefore, the maximum number of leaves a binary tree of height $n$ can have is $2^{n-1}$.
+
+    \subsubsection{}
+    Consider an arbitrary Binary Tree of size $n$. What is the maximum height $h_1$ that can be achieved? What is the minimum height $h_2$ that can be achieved? Justify your answer. \\
+
+    \textbf{Solution:}\\
+    The maximum height $h_1$ that can be achieved is $n-1$. This is because a tree of size $n$ can be a glorified linked list, where each node has one child. This is a tree of height $n-1$.
+
+    The minimum height once again involves a complete binary tree. A complete binary tree of size $n$ has height $\log_2(n)$. Let's draw a few examples to see if we can find a pattern.
+
+    \textbf{Height 1:} Size 1.\\
+    \begin{center}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [1]
+        \end{forest}
+    \end{center}
+
+    \textbf{Height 2:} Size 3.\\
+    \begin{center}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [1
+                [2],
+                [3]
+            ]
+        \end{forest}
+    \end{center}
+
+    \textbf{Height 3:} Size 7.\\
+    \begin{center}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [1
+                [2
+                    [4]
+                    [5]
+                ]
+                [3
+                    [6]
+                    [7]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+
+    Very quickly, we can see that the number of nodes given a height is $2^h - 1$. Solving this equation for $h$ gives us $h = \log_2(n+1)$. Therefore, the minimum height $h_2$ that can be achieved is $\ceil{\log_2(n+1)}$. Note that we use the ceiling function because the height of a tree must be an integer.
+
+    \subsubsection{}
+    Consider the \texttt{search} operation for a \textit{Binary Search Tree}. What is the \textbf{worst case} time complexity for the \texttt{search} operation? When does it happen? Give an example of a tree that would cause this to happen. \\
+    Are BST operations \textit{in general} always $\mathcal{O}(\log n)$? Why or why not? \\
+
+    \textbf{Solution:}\\
+    The answer for this question comes from the lecture slides. 
+
+    The worst case of the \texttt{search} operation for a \textit{Binary Search Tree} is $\mathcal{O}(h)$, where $h$ is the height of the tree. $h$ is bounded by 
+    \begin{equation*}
+        \log_2(n) \leq h \leq n
+    \end{equation*}
+
+    Where $n$ is the size of the tree. Consider the following BST:
+
+    \begin{center}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [1
+                [,phantom]
+                [2
+                    [,phantom]
+                    [3
+                        [,phantom]
+                        [4
+                            [,phantom]
+                            [5
+                                [,phantom]
+                                [6]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+
+    Searching for the value $6$ in this tree would take $\mathcal{O}(n)$ time. This is because the tree is a glorified linked list, and the value $6$ is at the very end of the list.
+
+    \clearpage
+    \subsubsection{}
+    You are working on a new sorting algorithm known as \textit{IbraSort. IbraSort} works by first inserting all the elements into a \textit{Binary Search Tree}, and then performing an \textit{In-Order Traversal} to retrieve the sorted elements. What is the time complexity of \textit{IbraSort}? Is it ever possible for \textit{IbraSort} to have a complexity of $\mathcal{O}(n \log n)$? Why or why not?\\
+
+    \vspace{1cm}
+
+    \textbf{Solution:}
+
+    The complexity of \textit{IbraSort} depends on the order of insertion into the BST. If we insert an already sorted (or mostly sorted) list into the BST, since it's not an AVL Tree, it will become unbalanced very quickly and will increase the time complexity of the \texttt{insert} operation (See lecture slides).
+
+    To understand the time complexity of \textit{IbraSort}, let's consider the worst case scenario. If the BST is unbalanced, the height of the tree will be equal to the number of elements inserted. This means that the \texttt{insert} operation will take $\mathcal{O}(n)$ time for each element, resulting in a total time complexity of $\mathcal{O}(n^2)$ Inserting $n$ elements into the BST, where each element takes $n$ steps to insert $\implies \mathcal{O}(n \cdot n) \implies \mathcal{O}(n^2)$.
+
+    However, if the BST is balanced, the height of the tree will be $\log n$, where $n$ is the number of elements inserted. In this case, the \texttt{insert} operation will take $\mathcal{O}(\log n)$ time for each element, resulting in a total time complexity of $\mathcal{O}(n \log n)$.
+    
+    Note that we can disregard the complexity of the \texttt{in-order traversal} since it is $\mathcal{O}(n)$, which is less than the complexity of the \texttt{insert} operation. Hence, it does not contribute to the big-oh notation.
+
+    \textit{Fun fact: In CSC263, you will learn about HeapSort and TreeSort, and will also learn about Amoritzed Analysis, which applies to IbraSort}
+
+    Therefore, the time complexity of \textit{IbraSort} is $\mathcal{O}(n^2)$ in the worst case, but it can be improved to $\mathcal{O}(n \log n)$ if the BST is balanced. Achieving a balanced BST requires inserting the elements in a specific order that follows a \textit{normal distribution}, where the median is chosen as the root and the elements to the left are less than the root, while the elements to the right are greater than the root.
+
+    \subsubsection{}
+    Consider an arbitrary \textit{Binary Tree}. Given it's preorder traversal and postorder traversal, is it possible to reconstruct the tree? Why or why not? What if we consider a \textit{BST} instead? \\
+    \vspace{1cm}
+
+    \textbf{Solution:}\\
+
+    This is not possible. Consider the following counter-example.
+
+    Pre-Order: \texttt{[1, 1, 1, 1]}
+    Post-Order: \texttt{[1, 1, 1, 1]}
+
+    The following can be a mulitude of trees, including:
+    \begin{center}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [1
+                [1
+                    [1
+                        [1]
+                        [,phantom]
+                    ]
+                    [,phantom]
+                ]
+                [,phantom]
+            ]
+        \end{forest}
+        \hspace{1cm}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [1
+                [,phantom]
+                [1
+                    [,phantom]
+                    [1
+                        [,phantom]
+                        [1]
+                    ]
+                ]
+            ]
+        \end{forest}
+        \hspace{1cm}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [1
+                [1
+                    [,phantom]
+                    [1
+                        [1]
+                        [,phantom]
+                    ]
+                ]
+                [,phantom]
+            ]
+        \end{forest}
+        \hspace{1cm}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [1
+                [1]
+                [1
+                    [1]
+                    [,phantom]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+
+    Hence, it is not possible to reconstruct the tree given only the pre-order and post-order traversals.
+
+    This \textit{is} possible with BSTs however. This is due to the BST properties that allow us to determine the root of the tree, and the left and right subtrees, \textbf{assuming there are no duplicate values in the tree}.
+
+    \clearpage
+
+    \section{Homework Questions}
+    \subsection{Pre-order to BST}
+    This question requries us to reconstruct a BST given its pre-order traversal, assuming it has no duplicate values. As a challenge, it also asks us to raise an \texttt{Exception} if the pre-order traversal is invalid.
+
+    We will first solve this problem without solving the challenge, then we will modify our solution to include the challenge.
+
+    To solve this probem, we must remember the format which pre-order outputs. Consider the following BST:
+
+    \begin{center}
+        \begin{forest}
+        for tree={circle, draw, minimum size=2em, s sep=5mm}
+        [2
+            [1]
+            [3]
+        ]
+    \end{forest}
+  
+    \textit{The pre-order traversal of this tree is} \texttt{[2, 1, 3]}
+  \end{center}
+
+
+  Very quickly, we notice that the \textit{first} element in the list, call it $n$, is the \textit{root} of the current level of the tree. Now we must figure out how to differentiate the rest of the tree's nodes. To do so, we can utilize a technique known as \textit{partitioning}, where we split up the elements remaining in the list into two \textit{sublists}, one with elements greater than $n$, and one with elements smaller than $n$. 
+
+  We now have a root element, and two valid pre-order traverals of the two subtrees. We can recursively call our function on these two lists to re-build the remainder of the tree:
+
+  \begin{lstlisting}[language=Python, style=mystyle]
+def reconstruct_from_preorder(lst: list[int]) -> BinarySearchTree:
+    """Return the BinarySearchTree that is reconstructed from the given
+    preorder traversal <lst>.
+    """
+    if len(lst) == 0: # We've reached the leaves
+        return BinarySearchTree(None) # Return an empty tree
+    else:
+        root = lst[0] # The first element is the root
+        left_lst = [] # The two lists for the partition
+        right_lst = []
+        for i in range(1, len(lst)): 
+            # Actually partition the list
+            if lst[i] < root:
+                left_lst.append(lst[i])
+            else:
+                right_lst.append(lst[i])
+        # Recursively reconstruct the left and right subtrees
+        left_tree = reconstruct_from_preorder(left_lst)
+        right_tree = reconstruct_from_preorder(right_lst)
+        # Reassemble the tree
+        new_tree = BinarySearchTree(root)
+        new_tree._left = left_tree
+        new_tree._right = right_tree
+        return new_tree
+  \end{lstlisting}
+
+  \subsection{}
+  A similar process can be used for \textit{postorder}:
+
+  \begin{lstlisting}[language=Python, style=mystyle]
+def reconstruct_from_postorder(lst: list[int]) -> BinarySearchTree:
+    """Return the BinarySearchTree that is reconstructed from the given
+    postorder traversal <lst>.
+    """
+    if len(lst) == 0:
+        return BinarySearchTree(None)
+    else:
+        root = lst[-1]
+        left_lst = []
+        right_lst = []
+        for i in range(len(lst) - 1):
+            if lst[i] < root:
+                left_lst.append(lst[i])
+            else:
+                right_lst.append(lst[i])
+        left_tree = reconstruct_from_postorder(left_lst)
+        right_tree = reconstruct_from_postorder(right_lst)
+        new_tree = BinarySearchTree(root)
+        new_tree._left = left_tree
+        new_tree._right = right_tree
+        return new_tree
+  \end{lstlisting}
+
+  The challenges are left as an exercise to the reader. The hint is to use a helper function that takes in the list, the minimum and maximum values that the current node can have, and the current index in the list. Remember, as you go \textit{down} the tree, the restrictions on the values of the nodes get \textit{tighter}. If you find a node that is out of the tighter bound, you know that the pre-order traversal is invalid.
+
+  \subsection{}
+  In the above examples, we have shown that given a pre-order or post-order traversal, we can reconstruct a BST (assuming no duplicates). However, we have not considered an \textit{in-order} traversal. Let's prove that this is not possible.
+  
+\begin{proof}
+    Assume for sake of contradiction that we can reconstruct a BST given only the in-order traversal. That is, define a function $f(lst)$ that takes in a list of integers $lst$ and returns a BST. We would like to prove that this is a \textit{bijective} function, meaning that for every BST, there is a unique in-order traversal, and for every in-order traversal, there is a unique BST.
+
+    Consider the following BST:
+    \begin{center}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [10
+                [5
+                    [3]
+                    [7]
+                ]
+                [15
+                    [12]
+                    [17]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+
+    Running pre-order on this tree would output \texttt{[3, 5, 7, 10, 12, 15, 17]}.
+
+    Recall our tree rotation methods from the lab. Assume we rotate the \textit{right subtree} to the right. Then, the tree would look like this:
+
+    \begin{center}
+        \begin{forest}
+            for tree={circle, draw, minimum size=2em, s sep=5mm}
+            [10, name=root
+                [5
+                    [3]
+                    [7]
+                ]
+                [12
+                    [,phantom]
+                    [15
+                        [,phantom]
+                        [17]
+                    ]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+    Notice, by rotating the tree, we have not violated the BST properties, hence it is still a BST. However, the \textit{in-order} traversal of this tree remains the same, as \texttt{[3, 5, 7, 10, 12, 15, 17]}. 
+
+    Hence, we have proven that the function $f(lst)$ is not bijective, and therefore, it is not possible to reconstruct a BST given only the in-order traversal.
+
+    This becomes more apparent when we consider \textit{AVL Trees} (Out of the scope of the course, but a good exercise for the reader). AVL Trees are a type of BST that are \textit{self-balancing}. This means they maintain the BST property (i.e: their in-order traversal is always sorted), however the tree itself is not unique. Therefore, it is not possible to reconstruct an AVL Tree given only the in-order traversal.
+    \\
+  \end{proof}
+
+\end{document}

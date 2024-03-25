@@ -1,0 +1,169 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage{lipsum} % For dummy text
+\usepackage{graphicx} % For including images
+\usepackage{amsmath} % For mathematical symbols and equations
+\usepackage[margin=1in]{geometry} % Decrease margins
+\usepackage{forest}
+\usepackage{titlesec}
+\usepackage{amsthm} % Add the amsthm package to define the proof environment
+\usepackage{amssymb} % Add this line to import the amssymb package
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Custom commands
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+\title{Solutions to Week 10 Exercises}
+\author{Ibrahim Chehab}
+% Code styling
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+% Document
+\begin{document}
+
+\maketitle
+
+\section{Questions from FSG Slides}
+\subsection{TreeTheory Pro Max}
+\subsubsection{}
+Which of the following statements is true? Select all that apply:  
+\begin{enumerate}
+    \item The in-order traversal of a binary tree is always sorted
+    \item The post-order traversal of a binary search tree \textit{might} be sorted
+    \item The pre-order traversal of a binary tree \textit{might} be sorted
+    \item The pre-order traversal of a binary search tree is always sorted
+    \item \textbf{All} ancestors of a node in a binary search tree are less than the node
+    \item \textbf{All} ancestors of a node in a binary tree \textit{might} be less than the node
+\end{enumerate}
+
+\textbf{Solution}
+
+We will tackle each statement one by one.
+
+\begin{enumerate}
+    \item The first statement is false because the in-order traversal of a binary tree is not always sorted. It is only sorted if the binary tree is a binary search tree.
+    
+    \item The second statement is true if and only if the binary search tree is filled with all duplicates. Otherwise, the post-order traversal cannot be sorted, as we know children are visited before parents.
+    
+    \item The third statement is true. Consider the following binary tree:
+    
+    \begin{center}
+    \begin{forest}
+    {for tree={circle,draw, l sep=20pt}}
+    [1
+        [2
+            [3]
+            [4]
+        ]
+        [5
+            [6]
+            [7]
+        ]
+    ]
+    \end{forest}
+    \end{center}
+    
+    The pre-order traversal of this tree is \texttt{1, 2, 3, 4, 5, 6, 7}. This is sorted.
+    
+    \textbf{Note:} This is equivalent to a "there exists" statement in MAT102, hence proving it for one case is enough.
+
+    \item The fourth statement follows similar logic to the second statement. If the binary search tree is filled with all duplicates, then the pre-order traversal will be sorted. Otherwise, it will not be sorted. 
+    \item The fifth statement is false. Consider an arbitrary \texttt{Node} in the left subtree of the root. All ancestors of this node will be greater than the node.
+    \item The sixth statement is true. Consider the same example from the third statement. The ancestors of node 4 are 1 and 2, which are less than 4. 
+\end{enumerate}
+\subsubsection{}
+Given the in-order traversal of an arbitrary binary \textit{search} tree, is it possible to reconstruct the original tree? If so, how? If not, why not?
+
+Assume for sake of contradiction that we can reconstruct a BST given only the in-order traversal. That is, define a function $f(lst)$ that takes in a list of integers $lst$ and returns a BST. We would like to prove that this is a \textit{bijective} function, meaning that for every BST, there is a unique in-order traversal, and for every in-order traversal, there is a unique BST.
+
+Consider the following BST:
+\begin{center}
+    \begin{forest}
+        for tree={circle, draw, minimum size=2em, s sep=5mm}
+        [10
+            [5
+                [3]
+                [7]
+            ]
+            [15
+                [12]
+                [17]
+            ]
+        ]
+    \end{forest}
+\end{center}
+
+Running pre-order on this tree would output \texttt{[3, 5, 7, 10, 12, 15, 17]}.
+
+Recall our tree rotation methods from the lab. Assume we rotate the \textit{right subtree} to the right. Then, the tree would look like this:
+
+\begin{center}
+    \begin{forest}
+        for tree={circle, draw, minimum size=2em, s sep=5mm}
+        [10, name=root
+            [5
+                [3]
+                [7]
+            ]
+            [12
+                [,phantom]
+                [15
+                    [,phantom]
+                    [17]
+                ]
+            ]
+        ]
+    \end{forest}
+\end{center}
+Notice, by rotating the tree, we have not violated the BST properties, hence it is still a BST. However, the \textit{in-order} traversal of this tree remains the same, as \texttt{[3, 5, 7, 10, 12, 15, 17]}. 
+
+Hence, we have proven that the function $f(lst)$ is not bijective, and therefore, it is not possible to reconstruct a BST given only the in-order traversal.
+
+This becomes more apparent when we consider \textit{AVL Trees} (Out of the scope of the course, but a good exercise for the reader). AVL Trees are a type of BST that are \textit{self-balancing}. This means they maintain the BST property (i.e: their in-order traversal is always sorted), however the tree itself is not unique. Therefore, it is not possible to reconstruct an AVL Tree given only the in-order traversal.
+
+\subsubsection{}
+Given a sorted list of integers from $1$ to $n, n \in \mathbb{N} \setminus \{0\}$, how do you construct a balanced binary search tree (i.e: height $\log(n)$) from this list? Outline the order of insertion, and explain why this works.
+\\
+\textbf{Solution:}\\
+Recall, a BST is considered balanced if and only if the height of the left and right subtrees differ by at most 1. 
+\\
+To maintain this invariant, we will insert the median element (i.e: the element at index $\frac{n}{2}$) as the root of the tree. We will then split the list into two parts: the first half of the list will be the left subtree, and the second half of the list will be the right subtree.
+
+This leaves us with two subproblems: constructing the left subtree and the right subtree. We can recursively apply this process to the left and right halves of the list to construct the left and right subtrees, respectively.
+\\
+The order of insertion is as follows:
+\begin{enumerate}
+    \item Insert the median element as the root of the tree, remove this element from the list.
+    \item Split the list into two halves: the left half and the right half.
+    \item Recursively insert the new median element of the left half of the list as the left child of the root. Remove this element from the list.
+    \item Recursively insert the new median element of the right half of the list as the right child of the root. Remove this element from the list.
+    \item Repeat steps 2 and 3 until the list is empty
+\end{enumerate}
+
+This works because after each insertion, we are left with equal amounts of elements to be inserted in the left and right subtrees respectively. This ensures that the height of the left and right subtrees differ by at most 1, hence the tree is balanced.
+
+\subsection{IbraNatchi}
+This question is from Week 6, and as such the solution can be found in the Week 6 solutions document.
+
+\subsection{List Comprehensions}
+This question can easily be solved by running the code in a Python interpreter. This is left as an exercise to the reader.
+
+\end{document}
