@@ -11,6 +11,8 @@ This weeks homework is a bit more *intense* than usual. I've set it up like an a
 The basic gyst is: you'll be making a derivative calculator using Expression Trees. You'll be given a few functions to implement, and you'll be given a few helper functions to help you along the way. You'll also be given a few test cases to help you test your code.
 
 ## Solutions:
-Solutions will be posted **after** the FSG. Nice try, but no peaky-peaky.
+Solutions can be found in the [solutions.md](Solutions/solutions.pdf) file.
+
+Homework solutions can be found in the [Solutions/homework solution](Solutions/homework%20solution/) folder.
 
 **NOTE:** All solutions are provided outside FSG hours, and are not endorsed neither explicitly nor implicitly by the UTM RGASC, or the CSC148 teaching staff. These solutions are meant to be used as a reference, and not a replacement for the problem solving process. You are encouraged to attend office hours and ask questions during lectures if there are any parts of the solution that you do not understand.
