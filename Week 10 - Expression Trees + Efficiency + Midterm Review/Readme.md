@@ -11,7 +11,7 @@ This weeks homework is a bit more *intense* than usual. I've set it up like an a
 The basic gyst is: you'll be making a derivative calculator using Expression Trees. You'll be given a few functions to implement, and you'll be given a few helper functions to help you along the way. You'll also be given a few test cases to help you test your code.
 
 ## Solutions:
-Solutions can be found in the [solutions.md](Solutions/solutions.pdf) file.
+Solutions can be found in the [solutions.pdf](Solutions/solutions.pdf) file.
 
 Homework solutions can be found in the [Solutions/homework solution](Solutions/homework%20solution/) folder.
 
