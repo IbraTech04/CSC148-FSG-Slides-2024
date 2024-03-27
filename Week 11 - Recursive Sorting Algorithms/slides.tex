@@ -1,0 +1,302 @@
+\documentclass[hyperref={colorlinks,citecolor=blue,linkcolor=blue,urlcolor=blue}, aspectratio=1610]{beamer}
+\usepackage{xcolor}
+\usepackage{pgfpages}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage{forest}
+\usepackage{qrcode}
+\usepackage{graphicx}
+
+
+\mode<presentation>
+{
+  \usetheme{Madrid}       % or try default, Darmstadt, Warsaw, ...
+  \usecolortheme{beaver} % or try albatross, beaver, crane, ...
+  \usefonttheme{structurebold}    % or try default, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+% \pgfpagesuselayout{resize to}[%
+%   physical paper width=8in, physical paper height=6in]
+
+\title[IbraFSG 6: Midterm 2]{IbraFSG\texttrademark{} 7 - Week 11; Recursive Sorting Algorithms}
+
+
+\author{Ibrahim Chehab}
+\institute{UTM RGASC}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Table of Contents}
+  \tableofcontents
+\end{frame}
+
+\section{Introduction}
+
+\subsection{FSG HouseKeeping}
+\begin{frame}
+  \frametitle{FSG HouseKeeping}
+  \begin{enumerate}
+    \item \textbf{Reminder that a new FSG Session has been added:}
+    \begin{itemize}
+      \item \textbf{When?} \textit{Fridays, 12:00-1:00PM}
+      \item \textbf{Where?} \textit{IB210}
+    \end{itemize}
+    \pause
+    \item \textbf{Assignment 2 Deadline Coming Up!} Assignment 2 is due on April 3rd! Make sure you're actively working on it!
+    \pause
+    \item \textbf{New Study Session Drop Ins!} \\ Feeling Stressed about exams? Don't know where to start? Drop by the MN3260 for a study skills session! 
+    \begin{itemize}
+      \item \textbf{When:} March $27^{th}$ 3-4PM, and April $3^{rd}$ 1-2PM
+      \item \textbf{Where:} MN3260
+    \end{itemize}
+    \pause
+    \item \textbf{Join the UTM CS Discord Server!} \url{https://discord.gg/utmcs}
+    \begin{itemize}
+      \item \textbf{Note:} The server is not affiliated with the RGASC, CSC148H5, or the University of Toronto Mississauga
+    \end{itemize}
+    \item \textbf{Stay tuned for the CSC148 \textit{MEGA} FSG \dots}
+  \end{enumerate}
+
+\end{frame}
+
+\subsection{Welcome back to IbraFSGs\texttrademark{}}
+\begin{frame}
+    \frametitle{Welcome back to IbraFSGs\texttrademark{}}
+    \begin{itemize}
+        \item Welcome back to IbraFSGs\texttrademark{}! Hello to new people and welcome back to tenured members.
+        \item This week we will be going over recursive sorting algorithms like \textit{QuickSort} and \textit{MergeSort}
+        \item Recall in CSC108 we defind the following sorting algorithms:
+        \begin{itemize}
+            \item Bubble Sort - Worst case $\mathcal{O}(n^2)$
+            \item Selection Sort - Worst case $\mathcal{O}(n^2)$
+            \item Insertion Sort - Worst case $\mathcal{O}(n^2)$
+        \end{itemize}
+        \pause
+        \item Today we will show how we can improve on these algorithms using recursion, achieving $\mathcal{O}(n\log(n))$ time complexity
+        \item \url{https://www.toptal.com/developers/sorting-algorithms}
+        \pause
+        \item \textbf{Fun Fact:} In \textit{CSC263}, you will use \textit{STA256} knowledge to analyze the time-complexity of randomized-quicksort using Expected Values and Indicator Random Variables
+        \pause
+        \item \textbf{Fun Fact \#2:} In CSC236, you will learn how to formally prove the correctness of these algorithms using loop invariants and induction
+    \end{itemize}   
+    \begin{center}
+      \textit{Tl;Dr} CS gets real hard real fast.      
+    \end{center}
+\end{frame}
+
+\subsection{A Recap of the UltraSheet\texttrademark{}}
+\begin{frame}{A Recap of the UltraSheet\texttrademark{}}
+  \begin{itemize}
+    \item An \textit{UltraSheet\texttrademark{}} is a "cheat sheet" that you compile for \textbf{yourself} to review course materials 
+    \begin{itemize}
+      \item Sharing UltraSheets\texttrademark{} is \textbf{counter-productive} and \textbf{will not help you learn the material}
+      \item However, reviewing content in a group and simultaneously updating your UltraSheets\texttrademark{} is a good idea
+    \end{itemize}
+    \item It acts like your own personalized textbook chapter
+    \begin{itemize}
+      \item It allows you to \textbf{regurgitate all the course information in a contiguous, organized manner} and helps you \textbf{find gaps in your knowledge}
+      \item You should \textbf{not} be copying the textbook or lecture slides verbatim; You should be \textbf{summarizing} the content in your own words while tying in examples and analogies
+    \end{itemize}
+    \item UltraSheets\texttrademark{} help with type 1 and 2 questions 
+  \item In case you didn't notice yet, Petersen \textit{loves Type 1} and \textit{Type 2} questions - Use this information how you will ;P
+  \end{itemize}
+
+\end{frame}
+
+\section{Recursive Sorting Algorithms}
+
+\subsection{Key Terms}
+\begin{frame}{Key Terms}
+  \textbf{Required Key Terms:} The following key terms are required for this week's content. You should be able to define and explain these terms in your UltraSheets\texttrademark{}:
+  \begin{itemize}
+    \item \textbf{Divide and Conquer} 
+    \begin{itemize}
+        \pause
+        \item \textbf{This is a BIG one!} It comes back to \textbf{haunt} you in CSC236
+    \end{itemize}
+    \pause
+    \item \textbf{QuickSort}
+    \begin{itemize}
+        \pause
+        \item \textit{Partitioning}
+        \pause
+        \item \textit{Pivot}
+    \end{itemize}
+    \pause
+    \item \textbf{MergeSort}
+    \begin{itemize}
+      \pause
+      \item \textit{Merging}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Key Terms (Cont'd)}
+    \textbf{Suggested Key Terms:} The following key terms are \textit{recommended} for further studying this week's content. Most are out of the scope of the course and are \textbf{not} required. 
+    \begin{itemize} 
+
+      \item \textbf{Big-O Notation ($\mathcal{O}(n)$)}
+      \begin{itemize}
+        \item Upper Bound
+        \item A function $f(n)$ is $\mathcal{O}(g(n))$ if there exists a constant $c > 0$ and $n_0 > 0$ such that $f(n) \leq c \cdot g(n)$ for all $n \geq n_0$
+      \end{itemize}
+      \item \textbf{Big-Omega Notation ($\Omega(n)$)}
+      \begin{itemize}
+        \item Lower Bound
+        \item A function $f(n)$ is $\Omega(g(n))$ if there exists a constant $c > 0$ and $n_0 > 0$ such that $f(n) \geq c \cdot g(n)$ for all $n \geq n_0$
+      \end{itemize}
+      \item \textbf{Big-Theta Notation ($\Theta(n)$)}
+      \begin{itemize}
+        \item Tight Bound
+        \item A function $f(n)$ is $\Theta(g(n))$ if and only if $f(n)$ is $\mathcal{O}(g(n))$ and $f(n)$ is $\Omega(g(n))$
+        \item In other words; $f(n)$ is $\Theta(g(n))$ if and only if there exist constants $c_1 > 0$, $c_2 > 0$, and $n_0 > 0$ such that $c_1 \cdot g(n) \leq f(n) \leq c_2 \cdot g(n)$ for all $n \geq n_0$
+        
+      \end{itemize}
+      
+    \end{itemize}
+    \textbf{Note:} These are CSC236 concepts, and are \textbf{not} required for CSC148. I am including these to complement your lecture on efficiency and complexity next week.
+    
+  
+\end{frame}
+
+\begin{frame}{Key Terms (Cont'd)}
+  \textbf{Suggested Key Terms:} The following key terms are \textit{recommended} for further studying this week's content. Most are out of the scope of the course and are \textbf{not} required. 
+  \begin{itemize} 
+    \item \textbf{TimSort (Ibrahim's Favourite)}
+    \begin{itemize}
+      \item A hybrid sorting algorithm derived from merge sort and insertion sort
+      \item Used in Python's \texttt{sorted()} function
+      \item Will haunt you in this weeks lab
+    \end{itemize}
+    \item \textbf{HeapSort - CSC263}B
+    \begin{itemize}
+      \item A comparison-based sorting algorithm
+      \item Uses a binary heap data structure
+    \end{itemize}
+    \item \textbf{RadixSort (Prof. Petersen's Favourite)}
+    \begin{itemize}
+      \item A non-comparative integer sorting algorithm
+      \item Sorts integers by processing individual digits
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\section{Practice Problems}
+
+\begin{frame}
+  \frametitle{Jamboard Link}
+  \begin{center}
+    \qrcode[height=2in]{https://jamboard.google.com/d/1GsjfzvrmhlPE7gIx9-Cg1Rxif88o9JGmUXq7onG8slc/edit?usp=sharing}\\
+    \url{https://tinyurl.com/ibrafsg0327}\\
+    \textit{0327 for March 27th}\\
+    \textbf{Note:} Jamboard isn't ideal because of its limitations, hence I'm working on my own alternative. Stay tuned!
+  \end{center}
+\end{frame}
+
+\subsection{Practice Problem I: SortTheory} 
+\begin{frame}
+  \frametitle{Practice Problem I Prelude}
+  Is \textit{QuickSort} always $\mathcal{O}(n\log(n))$? Is \textit{MergeSort} always $\mathcal{O}(n\log(n))$? Justify your answer.
+  \\
+  \textit{Hint: Consider what this depends on}
+  \onslide<2->{
+    \\
+    \textit{Hint \# 2: Which data structure and traversal is most similar to QuickSort?}
+  }
+\end{frame}
+
+\begin{frame}[fragile]
+  
+  \frametitle{Practice Problem I: SortTheory}
+    Dr. Halstead and Dr. Manning are arguing about the new hospital database system sorting upgrades. Dr. Manning argues Quicksort is the faster option, while Dr. Halstead is a firm believer in the efficiency mergesort. With the help of April, Dr. Choi runs some tests with both sorting algorithms on the hospital dataset. Here is what you know about the dataset:
+    \begin{enumerate}
+        \item 99\% of the time, the hospitals dataset is mostly sorted
+        \item All the sorting algorithms are run in their non-in-place variants
+        \item Every other part of their software is as optimized as it can get - There is no other source of slowdowns other than the choice of algorithm
+    \end{enumerate}
+    \textit{Note: }Since these are doctors and not computer scientists, they do not know about TimSort (which would’ve been the ideal compromise for Will and Natalie)\\
+
+  Given what we know about Gaffney Chicago's database, what did Dr. Choi and April find in their tests? 
+  \\
+  \textbf{Justify your answer}
+
+  \onslide<2->{
+    \textit{Pay attention to context clues in the question}
+  }
+\end{frame}
+
+\subsection{Practice Problem II: QuickSort Speed Visualization}
+\begin{frame}
+  \frametitle{Practice Problem II: QuickSort Troubles}
+  Draw the resulting BSTs for the following lists, assuming the pivot is the element you will always insert first. What is the complexity of inserting the elements in the order given? What does this mean for the BST?
+  \begin{itemize}
+    \item \texttt{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+    \item \texttt{[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+    \item \texttt{[5, 3, 7, 2, 4, 6, 8, 1, 9, 10]}
+  \end{itemize}
+  \onslide<2->{
+    \textit{Note:} This is a visualization of the \textit{QuickSort} algorithm, but is not an accurate representation of what actually happens in the algorithm \\
+    QuickSort can be simplified into constant insertion into a BST then an inorder traversal of the BST
+  }
+\end{frame}
+
+\subsection{Practice Problem III: MergeSort Speed Visualization}
+\begin{frame}
+  \frametitle{Practice Problem III: MergeSort Troubles - If we have time}
+  Draw the resulting Binary Tree for the following lists, following the MergeSort sorting algorithm.
+  \begin{itemize}
+    \item \texttt{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+    \item \texttt{[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+    \item \texttt{[5, 3, 7, 2, 4, 6, 8, 1, 9, 10]}
+  \end{itemize}
+  \onslide<2->{
+    \textit{Note:} Do you see now why there are speed differences between QuickSort and MergeSort?
+  }
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}
+  \frametitle{Thank you for coming!}
+  \centering
+  \begin{figure}
+    \includegraphics[width=0.5\textwidth]{that's_all_folks.jpeg}
+    \caption{Image courtsey of Looney Tunes\texttrademark{} and Warner Bros.\texttrademark{}}
+  \end{figure}
+\end{frame}
+
+\end{document}
