@@ -6,6 +6,7 @@ This week is a little more of a *lighter* week since there isn't much I can do w
 
 ## Homework:
 Because I'm such a nice FSG Leader, I've decided to omit homework this week :D
+> Translation: There isn't anything relevant/worth your time to assign as homework, hence why I'm not assigning any.
 
 If we don't get to certain questions this week, then that's your "unofficial" homework.
 
