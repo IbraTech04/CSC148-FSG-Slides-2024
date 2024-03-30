@@ -1,0 +1,315 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage{lipsum} % For dummy text
+\usepackage{graphicx} % For including images
+\usepackage{amsmath} % For mathematical symbols and equations
+\usepackage[margin=1in]{geometry} % Decrease margins
+\usepackage{forest}
+\usepackage{titlesec}
+
+% Title and author
+\title{Solutions to Week 11 Exercises}
+\author{Ibrahim Chehab}
+\usepackage{amsthm} % Add the amsthm package to define the proof environment
+\usepackage{xcolor}
+
+\usepackage{amsmath} % For mathematical symbols and equations
+
+% Ceil command
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Questions from FSG Slides}
+
+The solutions will cover the questions out of order to better represent the "problem solving" aspect of the FSGs
+
+\subsection{}
+Draw the resulting BSTs for the following lists, assuming the pivot is the element you will always insert first. What is the complexity of inserting the elements in the order given? What does this mean for the BST?
+\begin{itemize}
+  \item \texttt{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+  \item \texttt{[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+  \item \texttt{[5, 3, 7, 2, 4, 6, 8, 1, 9, 10]}
+\end{itemize}
+
+This question is meant to \textit{visually} show you the complexity of quicksort with different lists. This question assumes the implementation of quicksort where the pivot is the first element in the list (as it is defined in your coursenotes). 
+
+\subsubsection{\texttt{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}}
+
+The resulting BST is as follows:
+
+\begin{center}
+\begin{forest}
+    for tree={circle, draw, minimum size=1em, s sep=5mm}
+  [1, [,phantom]
+    [2, [,phantom]
+      [3, [,phantom]
+        [4, [,phantom]
+          [5, [,phantom]
+            [6, [,phantom]
+              [7, [,phantom]
+                [8, [,phantom]
+                  [9, [,phantom]
+                    [10]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{forest}
+\end{center}
+
+Notice, this tree is effectively a LinkedList. Hence, the insertion complexity is $O(n)$, where $n$ is the number of elements in the list. This means that the BST is effectively a LinkedList.
+
+This makes the total sequence complexity of inserting the elements in the order given $O(n^2)$. 
+
+\subsubsection{\texttt{[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}}
+The resulting BST is as follows:
+
+\begin{center}
+    \begin{forest}
+        for tree={circle, draw, minimum size=0.75cm, inner sep=0pt, s sep=10mm}
+        [10
+            [9
+                [8
+                    [7
+                        [6
+                            [5
+                                [4
+                                    [3
+                                        [2
+                                            [1]
+                                            [,phantom]
+                                        ]
+                                        [,phantom]
+                                    ]
+                                    [,phantom]
+                                ]
+                                [,phantom]
+                            ]
+                            [,phantom]
+                        ]
+                        [,phantom]
+                    ]
+                    [,phantom]
+                ]
+                [,phantom]
+            ]
+            [,phantom]
+        ]
+    \end{forest}
+    \end{center}
+
+    Once again, we notice that this tree is effectively a LinkedList. Hence, the insertion complexity is $O(n)$, where $n$ is the number of elements in the list. This means that the BST is effectively a LinkedList.
+
+    This makes the total sequence complexity of inserting the elements in the order given $O(n^2)$.
+
+\subsubsection{\texttt{[5, 3, 7, 2, 4, 6, 8, 1, 9, 10]}}
+The resulting BST is as follows:
+
+\begin{center}
+    \begin{forest}
+        for tree={circle, draw, minimum size=0.75cm, inner sep=0pt, s sep=10mm}
+        [5
+            [3
+                [2
+                    [1]
+                    [,phantom]
+                ]
+                [4]
+            ]
+            [7
+                [6]
+                [8
+                    [,phantom]
+                    [9
+                        [,phantom]
+                        [10]
+                    ]
+                ]
+            ]
+        ]
+    \end{forest}
+    \end{center}
+
+    This tree is not a LinkedList. The insertion complexity is closer to $O(\log n)$, where $n$ is the number of elements in the list. This means that the BST is effectively a LinkedList.
+
+    This makes the total sequence complexity of inserting the elements in the order given $O(n \log n)$.
+
+    Notice, the complexity of inserting the elements in the order given is directly related to the complexity of the resulting BST. If we are given a \textit{sorted}, or \textit{nearly sorted} list, the resulting BST will be a LinkedList. This is because the pivot is the first element in the list, and the tree will be unbalanced.
+
+    \subsection{Question 2}
+    Draw the resulting Binary Tree for the following lists, following the MergeSort sorting algorithm.
+    \begin{itemize}
+      \item \texttt{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+      \item \texttt{[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}
+      \item \texttt{[5, 3, 7, 2, 4, 6, 8, 1, 9, 10]}
+    \end{itemize}
+
+    \subsubsection{\texttt{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}}
+    The resulting Binary Tree is as follows:
+    \textit{Note: This BST only represents the splitting up of the list. It does not represent the merging of the lists.}
+
+    As a challenge to the reader, try to convert the following binary trees into the merged representation (i.e: Reading the tree from down-to-up should show the process of which the sublists are merged, rather than the order which they are split up).
+
+    \begin{center}
+        \begin{forest}
+            [\texttt{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]},
+                [\texttt{[1, 2, 3, 4, 5]}
+                    [\texttt{[1, 2, 3]}
+                        [\texttt{[1, 2]}
+                            [\texttt{[1]}]
+                            [\texttt{[2]}]
+                        ]
+                        [\texttt{[3]}]
+                    ]
+                    [\texttt{[4, 5]}
+                        [\texttt{[4]}]
+                        [\texttt{[5]}]
+                    ]
+                ]
+                [\texttt{[6, 7, 8, 9, 10]}
+                    [\texttt{[6, 7]}
+                        [\texttt{[6]}]
+                        [\texttt{[7]}]
+                    ]
+                    [\texttt{[8, 9, 10]}
+                        [\texttt{[8, 9]}
+                            [\texttt{[8]}]
+                            [\texttt{[9]}]
+                        ]
+                        [\texttt{[10]}]
+                    ]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+
+    Notice, the tree is close to being balanced. 
+
+    \subsubsection{\texttt{[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]}}
+
+    \begin{center}
+        \begin{forest}
+            [\texttt{[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]},
+                [\texttt{[10, 9, 8, 7, 6]}
+                    [\texttt{[10, 9, 8]}
+                        [\texttt{[10, 9]}
+                            [\texttt{[10]}]
+                            [\texttt{[9]}]
+                        ]
+                        [\texttt{[8]}]
+                    ]
+                    [\texttt{[7, 6]}
+                        [\texttt{[7]}]
+                        [\texttt{[6]}]
+                    ]
+                ]
+                [\texttt{[5, 4, 3, 2, 1]}
+                    [\texttt{[5, 4, 3]}
+                        [\texttt{[5, 4]}
+                            [\texttt{[5]}]
+                            [\texttt{[4]}]
+                        ]
+                        [\texttt{[3]}]
+                    ]
+                    [\texttt{[2, 1]}
+                        [\texttt{[2]}]
+                        [\texttt{[1]}]
+                    ]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+    
+    Notice, the tree is close to being balanced.
+
+    \subsubsection{\texttt{[5, 3, 7, 2, 4, 6, 8, 1, 9, 10]}}
+
+    \begin{center}
+        \begin{forest}
+            [\texttt{[5, 3, 7, 2, 4, 6, 8, 1, 9, 10]},
+                [\texttt{[5, 3, 7, 2, 4]}
+                    [\texttt{[5, 3]}
+                        [\texttt{[5]}]
+                        [\texttt{[3]}]
+                    ]
+                    [\texttt{[7, 2, 4]}
+                        [\texttt{[7]}]
+                        [\texttt{[2, 4]}
+                            [\texttt{[2]}]
+                            [\texttt{[4]}]
+                        ]
+                    ]
+                ]
+                [\texttt{[6, 8, 1, 9, 10]}
+                    [\texttt{[6, 8]}
+                        [\texttt{[6]}]
+                        [\texttt{[8]}]
+                    ]
+                    [\texttt{[1, 9, 10]}
+                        [\texttt{[1]}]
+                        [\texttt{[9, 10]}
+                            [\texttt{[9]}]
+                            [\texttt{[10]}]
+                        ]
+                    ]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+
+    Notice, the tree is close to being balanced.
+
+    We notice a pattern with \textit{MergeSort} - It always generates a close-to-balanced tree, unlike \textit{QuickSort} which can generate a LinkedList. Does this inherintly mean that \textit{MergeSort} is better than \textit{QuickSort}? 
+
+    The answer is no, not necissarily. While \textit{MergeSort} is consistently $O(n \log n)$ regardless of the input, the \textit{linear} (i.e: $O(n)$) part of \textit{QuickSort} is faster. This can be seen by the binary trees generated above. With \textit{QuickSort}, we simply need an $O(n)$ in-order traversal to generate a sorted list. With \textit{MergeSort}, we need to merge the lists, which is a $O(2n)$ operation in the worst case. \\
+    This is why choosing a sorting algorithm is not as simple as choosing the one with the best complexity; it is important to consider the input data and the variations within it wisely to choose the best algorithm.
+
+    \subsection{Question 3}
+    Dr. Halstead and Dr. Manning are arguing about the new hospital database system sorting upgrades. Dr. Manning argues Quicksort is the faster option, while Dr. Halstead is a firm believer in the efficiency mergesort. With the help of April, Dr. Choi runs some tests with both sorting algorithms on the hospital dataset. Here is what you know about the dataset:
+    \begin{enumerate}
+        \item 99\% of the time, the hospitals dataset is mostly sorted
+        \item All the sorting algorithms are run in their non-in-place variants
+        \item Every other part of their software is as optimized as it can get - There is no other source of slowdowns other than the choice of algorithm
+    \end{enumerate}
+    \textit{Note: }Since these are doctors and not computer scientists, they do not know about TimSort (which would’ve been the ideal compromise for Will and Natalie)\\
+
+  Given what we know about Gaffney Chicago's database, what did Dr. Choi and April find in their tests? 
+
+  \textbf{Solution:} \\
+
+  Based on our findings from the previous two questions, we can infer that \textit{MergeSort} is the faster option for the hospital database system. This is because the dataset is mostly sorted, and \textit{MergeSort} is consistently $O(n \log n)$ regardless of the input. As we learned above, when \textit{Quicksort} is given a sorted (or nearly-sorted) list, the complexity shoots up to $O(n^2)$. 
+
+  Hence, Dr. Halstead is correct in this case.
+\end{document}
