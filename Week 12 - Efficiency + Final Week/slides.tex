@@ -113,33 +113,6 @@
 
 \end{frame}
 
-\begin{frame}
-  \frametitle{Bonus! The Master Theorem: A Comprehensive Overview}
-  \textbf{NOTE: THIS IS COMPLETELY OUT OF SCOPE FOR CSC148! JUST HERE FOR FUN FACT!!}
-  \textbf{The Master Theorem provides a method for solving recurrence relations of the form:}
-  \begin{align*}
-    T(n) = aT\left(\frac{n}{b}\right) + f(n)
-  \end{align*}
-  where, 
-  \begin{itemize}
-    \item $a \geq 1$ and $b > 1$ are constants,
-    \item $f(n)$ is an asymptotically positive function.
-  \end{itemize}
-  
-  \textbf{The theorem is divided into three cases:}
-  \begin{enumerate}
-    \item \textbf{Case 1:} If $f(n) \in O(n^{\log_b a - \varepsilon})$ for some $\varepsilon > 0$, then $T(n) \in \Theta(n^{\log_b a})$.
-    \item \textbf{Case 2:} If $f(n) \in \Theta(n^{\log_b a}\log^k n)$ for some $k \geq 0$, then $T(n) \in \Theta(n^{\log_b a}\log^{k+1} n)$.
-    \item \textbf{Case 3:} If $f(n) \in \Omega(n^{\log_b a + \varepsilon})$ for some $\varepsilon > 0$, and if $af\left(\frac{n}{b}\right) \leq cf(n)$ for some $c < 1$ and sufficiently large $n$, then $T(n) \in \Theta(f(n))$.
-  \end{enumerate}
-
-  \begin{center}
-    \textit{Tl;Dr - CS isn't all about coding, there's a lot of math involved too!}\\
-    \textit{Tldrdr - CS gets real hard real fast}      
-  \end{center}
-\end{frame}
-
-
 \subsection{A Recap of the UltraSheet\texttrademark{}}
 \begin{frame}{A Recap of the UltraSheet\texttrademark{}}
   \begin{itemize}
@@ -191,18 +164,49 @@
       \item Lower Bound
       \item A function $f(n)$ is $\Omega(g(n))$ if there exists a constant $c > 0$ and $n_0 > 0$ such that $f(n) \geq c \cdot g(n)$ for all $n \geq n_0$
     \end{itemize}
+    \pause
     \item \textbf{The Master Theorem}
     \begin{itemize}
       \item A method for solving recurrence relations of the form $T(n) = aT\left(\frac{n}{b}\right) + f(n)$
       \item Allows for finding time complexity of divide and conquer algorithms
     \end{itemize}
+    \pause
     \item \textbf{Induction (Weak, Strong, Structural)}
     \begin{itemize}
       \item Recall this from MAT102
       \item Used to formally prove the correctness and efficiency-class of algorithms
     \end{itemize}
-    Aaaaand.... that's it for today! 
+    Aaaaand\ldots that's it for today! 
   \end{itemize}
+
+  \textbf{Fun Fact: In CSC236, the set of all naturals $\mathbb{N}$ contains 0, while in many math courses (i.e: MAT102) it does not.}
+\end{frame}
+
+\subsection{The Master Theorem}
+\begin{frame}
+  \frametitle{Bonus! The Master Theorem}
+  \textbf{NOTE: THIS IS COMPLETELY OUT OF SCOPE FOR CSC148! JUST HERE FOR FUN FACT!!}
+  \textbf{The Master Theorem provides a method for solving recurrence relations of the form:}
+  \begin{align*}
+    T(n) = aT\left(\frac{n}{b}\right) + f(n)
+  \end{align*}
+  where, 
+  \begin{itemize}
+    \item $a \geq 1$ and $b > 1$ are constants,
+    \item $f(n)$ is an asymptotically positive function.
+  \end{itemize}
+  
+  \textbf{The theorem is divided into three cases:}
+  \begin{enumerate}
+    \item \textbf{Case 1:} If $f(n) \in O(n^{\log_b a - \varepsilon})$ for some $\varepsilon > 0$, then $T(n) \in \Theta(n^{\log_b a})$.
+    \item \textbf{Case 2:} If $f(n) \in \Theta(n^{\log_b a}\log^k n)$ for some $k \geq 0$, then $T(n) \in \Theta(n^{\log_b a}\log^{k+1} n)$.
+    \item \textbf{Case 3:} If $f(n) \in \Omega(n^{\log_b a + \varepsilon})$ for some $\varepsilon > 0$, and if $af\left(\frac{n}{b}\right) \leq cf(n)$ for some $c < 1$ and sufficiently large $n$, then $T(n) \in \Theta(f(n))$.
+  \end{enumerate}
+
+  \begin{center}
+    \textit{Tl;Dr - CS isn't all about coding, there's a lot of math involved too!}\\
+    \textit{Tldrdr - CS gets real hard real fast}      
+  \end{center}
 \end{frame}
 
 \begin{frame}
@@ -316,18 +320,17 @@ def mystery2(n: int):
   \begin{lstlisting}[language=Python,style=mystyle]
 def foo(x: int):
   n = x
-    for i in range(n):
-      if n <= 50:
-        for j in range(n):
-          x += 1
-      if n <= 100:
-        for j in range(n):
-          if n <= 75:
-            for k in range(n):
-              x += 1
+  for i in range(50):
+    if n <= 50:
+      for j in range(n):
+        x += 1
+    if n <= 100:
+      for j in range(n):
+        if n <= 75:
+          for k in range(n):
+            x += 1
   \end{lstlisting}
   \textit{Hint: Split each part of the function into its own piecewise function $T(n)$, then combine them to find the overall complexity.}\\
-  \textit{Hint 2: This problem is probably harder than anything you'll ever get in CSC148}\\
   \onslide<2->{
     \textbf{Bonus (time permitting):} Change one line of this function to make it $\mathcal{O}(n)$
   }
@@ -338,9 +341,16 @@ def foo(x: int):
 \subsection{A Final Challenge}
 \begin{frame}[fragile]
   \frametitle{A Final Challenge\ldots}
+
+  \textbf{Official Homework:} Q13 and Q14 from the Winter 2023 Final exam (i.e: The one I was subjected to last year). They are \textit{very difficult} compared to todays FSG, however are GREAT practice.
+  
+  \textbf{Unofficial Homework:}
+  
   The following question is definitely a \textit{CSC236}-level problem, and you will NOT be tested on it in CSC148 - I REPEAT: \textbf{YOU WILL NOT BE TESTED ON THIS IN CSC148}. However, it's a fun problem to think about and will give you a taste of what you'll see in \textit{CSC236}.
 
-  Formally prove a $\Theta$ bound for the \texttt{mystery2} function shown above. 
+  Formally prove a $\Theta$ bound for the \texttt{mystery2} function shown below. \\
+
+  That is, using induction find and prove that $\exists c_1, c_2, n_0 > 0$ such that $c_1 \cdot n^2 \leq T(n) \leq c_2 \cdot n^2$ for all $n \geq n_0$.
    
   \textit{As a refresher:}
   \begin{lstlisting}[language=Python,style=mystyle]
