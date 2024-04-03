@@ -335,13 +335,24 @@ def foo(x: int):
 
 \section{Conclusion}
 
-\subsection{A Final Challenge\dots}
-\begin{frame}
-  \frametitle{A Final Challenge...}
-  The following question is definitely a \textit{CSC236}-level problem, and you will NOT be tested on it in CSC148 - I REPEAT: \textbf{YOU WILL NOT BE TESTED ON THIS IN CSC148}. However, it's a fun problem to think about and will give you a taste of what you'll see in \textit{CSC236}.\\
+\subsection{A Final Challenge}
+\begin{frame}[fragile]
+  \frametitle{A Final Challenge\ldots}
+  The following question is definitely a \textit{CSC236}-level problem, and you will NOT be tested on it in CSC148 - I REPEAT: \textbf{YOU WILL NOT BE TESTED ON THIS IN CSC148}. However, it's a fun problem to think about and will give you a taste of what you'll see in \textit{CSC236}.
+
+  Formally prove a $\Theta$ bound for the \texttt{mystery2} function shown above. 
+   
+  \textit{As a refresher:}
+  \begin{lstlisting}[language=Python,style=mystyle]
+def mystery2(n: int):
+  L = []
+  for i in range(n):
+      for j in range(max(50, n)):
+          L.insert(0, j)
+  \end{lstlisting}
 \end{frame}
 
-\subsection{Goodbye, for now...}
+\subsection{Goodbye, for now\ldots}
 
 \begin{frame}
   \frametitle{Thank you for coming!}
@@ -362,7 +373,7 @@ def foo(x: int):
   Genuinely, thank you for coming to my FSGs. If anything, I hope I made CSC148 easier for you. This has truly been an amazing experience for me, and I hope to see you all in the future (potentially as a TA :eyes:)
   Feel free to reach out to me on Discord or on the UTM CS Discord server if you have any questions or need help with anything.\\
 
-  \textbf{In all seriousness, keep an eye out for our MEGA FSG coming soon....}
+  \textbf{In all seriousness, keep an eye out for our MEGA FSG coming soon\ldots}
 \end{frame}
 
 \end{document}
