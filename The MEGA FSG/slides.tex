@@ -1,0 +1,346 @@
+\documentclass[hyperref={colorlinks,citecolor=blue,linkcolor=blue,urlcolor=blue}, aspectratio=1610]{beamer}
+\usepackage{xcolor}
+\usepackage{pgfpages}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage{forest}
+\usepackage{qrcode}
+\usepackage{graphicx}
+
+
+\mode<presentation>
+{
+  \usetheme{Madrid}       % or try default, Darmstadt, Warsaw, ...
+  \usecolortheme{beaver} % or try albatross, beaver, crane, ...
+  \usefonttheme{structurebold}    % or try default, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+% \pgfpagesuselayout{resize to}[%
+%   physical paper width=8in, physical paper height=6in]
+
+\title[CSC148 MEGA FSG]{The CSC148 Mega FSG}
+\author[Ibrahim and Helia]{Ibrahim Chehab and Helia Seyedmazhari}
+\institute{UTM RGASC}
+\date{April $9^{th}$, 2024}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Table of Contents}
+  \tableofcontents
+\end{frame}
+
+\section{Introduction}
+\subsection{Welcome to the CSC148 Mega FSG!}
+\begin{frame}
+    \frametitle{Welcome to the CSC148 Mega FSG!}
+    Welcome everyone, to the first (I think?) ever CSC148 \textit{Mega FSG!+}
+    \begin{itemize}
+      \item Thank you for coming! We hope you enjoy the FSG!
+      \item Today we will be going over some key concepts from CSC148, and we will be doing some practice problems in preparation for the exam.
+    \end{itemize}
+\end{frame}
+
+\section{Key Terms}
+\begin{frame}
+  \frametitle{Key Terms}
+  We will now quickly go over all the key terms you need to know for the exam.\\
+  \textbf{Note:}
+  \begin{itemize}
+    \item This is \textbf{NOT} an exhaustive or comprehensive list by any means. When in doubt, always check with a TA/Professor.
+    \item We will be going backwards, here's why:
+    \begin{itemize}
+      \item All too often, I (Ibrahim) see people neglecting weeks 1-6 and focusing on the later weeks. This is a mistake.
+      \item Like all CS courses, everything builds on top of each other. If you don't understand the basics, you won't understand the more complex stuff.
+      \item We will be showing you how the content from previous weeks builds upon the more complex stuff, to hopefully emphasize the importance of understanding the basics.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Week 12 Key Terms}
+  \begin{itemize} 
+
+    \item \textbf{Big-O Notation ($\mathcal{O}(n)$)}
+    \item \textbf{Big-Theta Notation ($\Theta(n)$)}
+  \end{itemize}  
+\end{frame}
+
+\begin{frame}{Week 11 Key Terms}
+  \begin{itemize}
+    \item \textbf{Divide and Conquer} 
+    \begin{itemize}
+        \item \textit{\textbf{Recursion}}
+    \end{itemize}
+    \pause
+    \item \textbf{QuickSort}
+    \begin{itemize}
+        \item \textit{Partitioning}
+        \item \textit{Pivot}
+        \item \textit{How the Pivot can affect the efficiency of the algorithm}
+        \item \textit{Why does Quicksort performance vary?}
+    \end{itemize}
+    \pause
+    \item \textbf{MergeSort}
+    \begin{itemize}
+      \item \textit{Merging}
+      \item \textit{Why Mergesort has consistent performance}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Week 8, 9, 10 Key Terms}
+  \begin{itemize}
+    \item \textbf{Root} 
+    \item \textbf{Subtree} 
+    \item \textbf{Branching Factor}
+    \item \textbf{Height}
+    \item \textbf{All Tree Traversals}
+    \item \textbf{BSTs and why they're special}
+    \begin{itemize}
+      \item \textit{All time complexities of BST operations}
+      \item \textit{How $\mathcal{O}(h)$ translates in terms of worst-case and best-case scenarios}
+    \end{itemize}
+  \item \textbf{Polymorphism}
+  \begin{itemize}
+    \item \textbf{Why?} Expression Trees abuse Polymorphism to exist
+  \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Week 6, 7 Key Terms}
+  \begin{itemize}
+    \item \textbf{List Comprehension} 
+    \item \textbf{Recursion} 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Week 5, 4, 3, 2, 1 Key Terms}
+  \begin{itemize}
+    \item \textbf{Inhertiance}
+    \begin{itemize}
+      \item \textit{How it relates to Polymorphism}
+    \end{itemize}
+    \item \textbf{Abstraction}
+    \item \textbf{Stacks and Queues}
+    \begin{itemize}
+      \item \textit{How the implementation changes the time complexity}
+      \item \textit{Why Stacks and Queues are important}
+      \item \textit{\textbf{Why} they're callled \textbf{Abstract} data types}
+    \end{itemize}
+    \item \textbf{Linked Lists}
+  \end{itemize}
+\end{frame}
+
+\section{Practice Problems}
+\subsection{Did Somebody Say Palindrome?}
+\begin{frame}[fragile]
+  \frametitle{Practice Problem 1: Did Somebody Say Palindrome?}
+  \textbf{Did Somebody Say Palindrome?}\\
+  Implement a \textit{recursive} function that checks whether a given string is a palindrome.
+  
+  \begin{center}
+    \textbf{RESTRICTIONS}:
+    \begin{itemize}
+      \item[i.] This function \textbf{MUST} be implemented using recursion.
+      \item[ii.] This function must \textbf{NOT} mutate the original word/sentence.
+      \item[iii.] You may use slicing, but you may \textbf{NOT} use the built-in reversal \texttt{[::-1]} or the \texttt{reversed()} function.
+    \end{itemize}
+  \end{center}
+  % ansewr to the problem
+  % def is_palindrome(word: str) -> bool:
+  %   if len(word) <= 1:
+  %       return True
+  %   return word[0] == word[-1] and is_palindrome(word[1:-1])
+
+\textit{  Here are some examples:}
+  \begin{enumerate}
+      \item[(a)] \texttt{ewe}
+      \item[(b)] \texttt{anna}
+      \item[(c)] \texttt{borrow or rob}
+      \item[(d)] \texttt{taco cat}
+      \item[(e)] \texttt{was it a car or a cat i saw}
+      \item[(f)] \texttt{racecar}
+    \end{enumerate}
+    \textit{Hint: Recall Ibrahim's recursion analogy}
+\end{frame}
+
+\subsection{InsertMii}
+\begin{frame}[fragile]
+  \frametitle{Practice Problem 2: InsertMii}
+  \textbf{InsertMii}\\
+  Consider the following implementation of a Doubly Linked List:
+
+  \begin{lstlisting}[language=Python, style=mystyle]
+class DLLNode:
+  """A node in a linked list."""
+  item: Any
+  next: Optional[DLLNode]
+  prev: Optional[DLLNode]
+
+class DoublyLinkedList:
+  """A doubly linked list."""
+  _first: Optional[DLLNode]
+  _last: Optional[DLLNode]
+
+  # Implementation omitted
+  \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Practice Problem 2: InsertMii (Cont'd)}
+  Implement the following method in the \texttt{DoublyLinkedList} class:
+
+  \begin{lstlisting}[language=Python, style=mystyle]
+def insert_last(self, value: Any, after: Any) -> bool:
+    """Insert a new Node with the value <value> after the LAST occurrence of the value <after> in this list.
+    If <after> does not exist in the list, then do not insert anything and return False.
+    The list must be correctly linked after this operation.
+    >>> sl = CustomDLL([7, 2, 7, 3])
+    >>> str(sl) 
+    '7 2 7 3'
+    >>> sl.insert_last(5, 7)
+    True
+    >>> str(sl)
+    '7 2 7 5 3'
+    >>> sl.insert_last(9, 8)
+    False
+    >>> str(sl)
+    '7 2 7 5 3'
+    """
+\end{lstlisting}
+\end{frame}
+
+\subsection{The Even-Worse-Stack}
+\begin{frame}[fragile]
+  \frametitle{Practice Problem 3: The Even-Worse-Stack}
+  Nugget has entered their \textit{evil era} and designed an evil ADT known as the \texttt{EvenWorseStack}. They've subjected Therapist to the \texttt{EvenWorseStack} and now Therapist is in a state of despair. Help Therapist by analyzing the time complexity of the \texttt{pop} method of the \texttt{EvenWorseStack} class.\\
+
+  \begin{columns}[T,onlytextwidth]
+  
+    \begin{column}{0.48\textwidth}
+      \begin{lstlisting}[language=Python, style=mystyle, basicstyle=\tiny]
+class EvenWorseStack:
+  """
+  A Stack implementation designed to be slow and inefficient.
+  """
+  _stack: Queue
+  
+  def __init__(self) -> None:
+      self._stack = Queue()
+  
+  def push(self, value: int) -> None:
+      self._stack.enqueue(value)
+  
+  def pop(self) -> int:
+      temp = Queue()
+      while self._stack.size() > 1:
+          temp.enqueue(self._stack.dequeue())
+      value = self._stack.dequeue()
+      self._stack = temp
+      return value
+      \end{lstlisting}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \begin{lstlisting}[language=Python, style=mystyle, basicstyle=\tiny]
+class Queue:
+    
+    _queue: list[int]
+    
+    def __init__(self) -> None:
+        self._queue = []
+    
+    def enqueue(self, value: int) -> None:
+        self._queue.insert(0, value)
+    
+    def dequeue(self) -> int:
+        index_to_remove = self.size() - 1
+        value = self._queue[index_to_remove]
+        self._queue = self._queue[:index_to_remove]
+        return value
+    
+    def size(self) -> int:
+        return len([i for i in self._queue])
+      \end{lstlisting}
+    \end{column}
+    
+  \end{columns}
+  What is the time complexity of the \texttt{pop} method?
+\end{frame}
+
+\subsection{Efficiencii}
+\begin{frame}
+  \frametitle{Practice Problem 4: Efficiencii}
+  \textbf{Efficiencii}\\
+  Select all the statements that are \textbf{TRUE}:
+  \begin{enumerate}
+    \item Choosing $n_0$ does not change the final result of the efficiency class
+    \item If a function has a time complexity of $\mathcal{O}(n^2)$, it might still be $\Theta(n)$
+    \item If a function has a time complexity of $\mathcal{O}(n)$, it might still be $\Theta(n^2)$
+    \item The iterative part of \texttt{QuickSort} is faster than the iterative part of \texttt{MergeSort}
+    \item The recursive part of \texttt{QuickSort} is faster than the recursive part of \texttt{MergeSort}
+    \item If a function is $\mathcal{O}(g(n))$, then it is also $\Theta(g(n))$
+    \item If a function is $\Theta(g(n))$, then it is also $\mathcal{O}(g(n))$
+  \end{enumerate}
+\end{frame}
+
+\subsection{The Final Challenge\ldots}
+\begin{frame}
+  \frametitle{The Final Challenge\ldots}
+  \textbf{Symbolab from Ohio}\\
+  Peace and d.aki have been trying to get an internship at Symbolab, and they have been given an \textit{at-home assignment} to complete. The assignment is to implement a primitive derivative calculator in Python from scratch. Help them out by:
+  \begin{itemize}
+    \item Designing classes that adhere to the \textit{Class Design Recipe} that represent important elements of a derivative.
+    \item Using \textit{Polymorphism and Inheritance} to represent the different types of derivatives.
+    \item Using \textit{Trees and Recursion} to represent the structure of the derivative.
+    \item Implementing a \texttt{derivative} method that takes a function and returns its derivative.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Conclusion}
+\begin{center}
+  \textbf{Thank you for attending the CSC148 Mega FSG!}
+  \end{center}
+  \begin{itemize}
+    \item We hope you enjoyed the FSG!
+    \item We hope you learned something new!
+    \item We hope you're ready for the exam!
+  \end{itemize}
+  \textbf{Thank you for your continued support and participation!}
+\end{frame}
+
+\end{document}
