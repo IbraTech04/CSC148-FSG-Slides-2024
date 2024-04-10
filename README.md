@@ -12,7 +12,7 @@ The content within this repository (Including slides, solutions, and homework) i
 Don't know where to start? Here's a list of all the weeks we've covered in CSC148. Click on the week you want to view, and you'll be taken to the respective folder. There, you can find the slides, homework, and solutions for that week.
 ### [Week 6 - Recursion](/Week%206%20-%20Recursion)
 - [Slides](/Week%206%20-%20Recursion/slides.pdf)
-- [Homework](/Week%206%20-%20Recursion/homework.md)
+- [Homework](/Week%206%20-%20Recursion/Homework.md)
 - [Solutions](/Week%206%20-%20Recursion/solutions.py)
 
 ### [Week 7 - List Comprehensions](/Week%207%20-%20List%20Comprehensions)
