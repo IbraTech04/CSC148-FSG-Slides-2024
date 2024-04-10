@@ -28,7 +28,7 @@ Don't know where to start? Here's a list of all the weeks we've covered in CSC14
 ### [Week 9 - Binary Search Trees](/Week%209%20-%20Binary%20Search%20Trees)
 - [Slides](/Week%209%20-%20Binary%20Search%20Trees/slides.pdf)
 - [Homework](/Week%209%20-%20Binary%20Search%20Trees/homework.md)
-- [Solutions](/Week%9%20-%20Binary%20Search%20Trees/Solutions/solutions.pdf)
+- [Solutions](/Week%209%20-%20Binary%20Search%20Trees/Solutions)
 
 ### [Week 10 - Expression Trees + Efficiency + Midterm Review](/Week%2010%20-%20Expression%20Trees%20+%20Efficiency%20+%20Midterm%20Review)
 - [Slides](/Week%2010%20-%20Expression%20Trees%20+%20Efficiency%20+%20Midterm%20Review/slides.pdf)
