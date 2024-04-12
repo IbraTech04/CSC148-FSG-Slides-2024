@@ -1,0 +1,388 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{chains, arrows.meta}
+% Packages
+\usepackage{lipsum} % For dummy text
+\usepackage{graphicx} % For including images
+\usepackage{amsmath} % For mathematical symbols and equations
+\usepackage[margin=1in]{geometry} % Decrease margins
+\usepackage{forest}
+\usepackage{titlesec}
+\usepackage{tikz}
+\usepackage{pgfplots} % Add the pgfplots package for plotting
+
+% Title and author
+\title{Solutions to Week 13 (MEGA FSG) Exercises}
+\author{Ibrahim Chehab}
+\usepackage{amsthm} % Add the amsthm package to define the proof environment
+\usepackage{xcolor}
+
+\usepackage{amsmath} % For mathematical symbols and equations
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+% Ceil command
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+
+\begin{document}
+
+\maketitle
+
+\section{Did Somebody say Palindrome?}
+
+Implement a \textit{recursive} function that checks whether a given string is a palindrome.
+  
+  \begin{center}
+    \textbf{RESTRICTIONS}:
+    \begin{itemize}
+      \item[i.] This function \textbf{MUST} be implemented using recursion.
+      \item[ii.] This function must \textbf{NOT} mutate the original word/sentence.
+      \item[iii.] You may use slicing, but you may \textbf{NOT} use the built-in reversal \texttt{[::-1]} or the \texttt{reversed()} function.
+    \end{itemize}
+  \end{center}
+  % ansewr to the problem
+  % def is_palindrome(word: str) -> bool:
+  %   if len(word) <= 1:
+  %       return True
+  %   return word[0] == word[-1] and is_palindrome(word[1:-1])
+
+\textit{  Here are some examples:}
+  \begin{enumerate}
+      \item[(a)] \texttt{ewe}
+      \item[(b)] \texttt{anna}
+      \item[(c)] \texttt{borrow or rob}
+      \item[(d)] \texttt{taco cat}
+      \item[(e)] \texttt{was it a car or a cat i saw}
+      \item[(f)] \texttt{racecar}
+    \end{enumerate}
+    \textit{Hint: Recall Ibrahim's recursion analogy}
+
+\textbf{Solution:}
+
+This problem requires a common algorithm known as \textit{two-pointer}, however we will need to modify it to fit the recursive nature of the problem. We will abuse \textit{string splicing} to achieve this. The basic idea is to keep shrinking the string by comparing the first and last characters of the string. If they are equal, we remove them and continue the process. If they are not equal, we return \texttt{False}. If the string is empty or has only one character, we return \texttt{True}. If we reach a space, we move only the affected pointer over one and continue the process.
+
+\begin{lstlisting}[language=Python, style=mystyle]
+def is_palindrome(word: str) -> bool:
+    if len(word) <= 1: # If we have an empty string or a string with one character, it is a palindrome. This is our base case.
+        return True
+    if word[0] == ' ': # If our "left" pointer is a space, we move it to the right and call the function again.
+        return is_palindrome(word[1:])
+    if word[-1] == ' ': # Similarly, if our "right" pointer is a space, we move it to the left and call the function again.
+        return is_palindrome(word[:-1])
+    return word[0] == word[-1] and is_palindrome(word[1:-1]) # If the characters at the left and right pointers are the same, we move both pointers towards the center and call the function again. If they are not the same, we return False.
+\end{lstlisting}
+
+Note that it is also possible to solve this problem iteratively, and the iterative solution will make the \textit{two pointer} approach more explicit. However, the recursive solution is more elegant and concise.
+
+Nonetheless, the iterative solution is provided below for reference:
+
+\begin{lstlisting}[language=Python, style=mystyle]
+def is_palindrome(word: str) -> bool:
+    left, right = 0, len(word) - 1
+    while left < right:
+        if word[left] == ' ':
+            left += 1
+            continue
+        if word[right] == ' ':
+            right -= 1
+            continue
+        if word[left] != word[right]:
+            return False
+        left += 1
+        right -= 1
+    return True
+\end{lstlisting}
+
+It is reccomended to visually draw out the iterative solution if you're having trouble understanding it. Using a string and two arrows to represent the left and right pointers can be very helpful. If you're still having trouble, reach out to someone for help :)
+
+\section{InsertMii}
+
+Consider the following implementation of a Doubly Linked List:
+
+  \begin{lstlisting}[language=Python, style=mystyle]
+class DLLNode:
+  """A node in a linked list."""
+  item: Any
+  next: Optional[DLLNode]
+  prev: Optional[DLLNode]
+
+class DoublyLinkedList:
+  """A doubly linked list."""
+  _first: Optional[DLLNode]
+  _last: Optional[DLLNode]
+
+  # Implementation omitted
+  \end{lstlisting}
+  Implement the following method in the \texttt{DoublyLinkedList} class:
+
+  \begin{lstlisting}[language=Python, style=mystyle]
+def insert_last(self, value: Any, after: Any) -> bool:
+    """Insert a new Node with the value <value> after the LAST occurrence of the value <after> in this list.
+    If <after> does not exist in the list, then do not insert anything and return False.
+    The list must be correctly linked after this operation.
+    >>> sl = CustomDLL([7, 2, 7, 3])
+    >>> str(sl) 
+    '7 2 7 3'
+    >>> sl.insert_last(5, 7)
+    True
+    >>> str(sl)
+    '7 2 7 5 3'
+    >>> sl.insert_last(9, 8)
+    False
+    >>> str(sl)
+    '7 2 7 5 3'
+    """
+\end{lstlisting}
+
+\textbf{Solution:}
+
+There are \textit{two} ways to approach this problem. The first way is to iterate \textit{backwards} through the list and insert the new node after the first occurrence of the value \texttt{after}. The second way is to iterate \textit{forwards} through the list and insert the new node after the last occurrence of the value \texttt{after}. The first way is more efficient, but the second way is harder and as such is reccomended. Nonetheless, we will provide both solutions below.
+
+\textbf{Solution 1:} Iterating backwards
+
+The general idea of this solution is to iterate backwards through the linked list (remember, it's doubly so we have \texttt{prev} pointers) like a traditional linkedlist. Once we find the node we're looking for, we insert normally (albeit with more pointers to update) and return \texttt{True}. If we reach the beginning (end) of the list without finding the node, we return \texttt{False}.
+
+\begin{lstlisting}[language=Python, style=mystyle]
+def insert_last(self, value: Any, after: Any) -> bool:
+    if self._last is None: # If the list is empty, we return False.
+        return False
+    current = self._last
+    while current is not None:
+        if current.item == after: # If we find the node we're looking for, we insert the new node after it.
+            new_node = DLLNode(value)
+            new_node.prev = current
+            new_node.next = current.next
+            if current.next is not None:
+                current.next.prev = new_node
+            current.next = new_node
+            if current == self._last: # If the node we're looking for is the last node, we update the last pointer.
+                self._last = new_node
+            return True
+        current = current.prev
+    return False # If we reach the beginning of the list without finding the node, we return False.
+\end{lstlisting}
+
+\textbf{Solution 2:} Iterating forwards\\
+This approach is similar to the previous approach, however requires iterating forward and keeping track of the last occurrence of the value \texttt{after}. Once we reach the end of the list, we insert the new node after the last occurrence of the value \texttt{after}. If we don't find the value, we return \texttt{False}.
+
+\begin{lstlisting}[language=Python, style=mystyle]
+def insert_last(self, value: Any, after: Any) -> bool:
+    if self._first is None: # If the list is empty, we return False.
+        return False
+    current = self._first
+    last_occurrence = None
+    while current is not None:
+        if current.item == after: # If we find the node we're looking for, we update the last occurrence pointer.
+            last_occurrence = current
+        current = current.next
+    if last_occurrence is None: # If we don't find the node, we return False.
+        return False
+    new_node = DLLNode(value) # Otherwise, we insert the new node after the last occurrence of the node.
+    new_node.prev = last_occurrence
+    new_node.next = last_occurrence.next
+    if last_occurrence.next is not None:
+        last_occurrence.next.prev = new_node
+    last_occurrence.next = new_node
+    if last_occurrence == self._last: # If the last occurrence is the last node, we update the last pointer.
+        self._last = new_node
+    return True
+\end{lstlisting}
+
+\section{The Even-Worse-Stack}
+Nugget has entered their \textit{evil era} and designed an evil ADT known as the \texttt{EvenWorseStack}. 
+They've subjected Therapist to the \texttt{EvenWorseStack} and now Therapist is in a state of despair. Help Therapist by analyzing the time complexity of the \texttt{pop} method of the \texttt{EvenWorseStack} class.\\
+
+\begin{lstlisting}[language=Python, style=mystyle]
+class EvenWorseStack:
+    """
+    A Stack implementation designed to be slow and inefficient.
+    """
+    _stack: Queue
+
+    def __init__(self) -> None:
+        self._stack = Queue()
+
+    def push(self, value: int) -> None:
+        self._stack.enqueue(value)
+
+    def pop(self) -> int:
+        temp = Queue()
+        while self._stack.size() > 1:
+            temp.enqueue(self._stack.dequeue())
+        value = self._stack.dequeue()
+        self._stack = temp
+        return value
+\end{lstlisting}
+  
+\begin{lstlisting}[language=Python, style=mystyle]
+class Queue:
+  
+  _queue: list[int]
+  
+  def __init__(self) -> None:
+      self._queue = []
+  
+  def enqueue(self, value: int) -> None:
+      self._queue.insert(0, value)
+  
+  def dequeue(self) -> int:
+      index_to_remove = self.size() - 1
+      value = self._queue[index_to_remove]
+      self._queue = self._queue[:index_to_remove]
+      return value
+  
+  def size(self) -> int:
+      return len([i for i in self._queue])
+    \end{lstlisting}
+  
+What is the time complexity of the \texttt{pop} method?
+
+\textbf{Solution:}
+
+To find the time complexity of the \texttt{pop} method, we must first analyze the time complexities of the relevant \texttt{Queue} methods.
+
+\begin{enumerate}
+    \item \texttt{enqueue}: The \texttt{enqueue} inserts at the front of a list. We know that this is a $\mathcal{O}(n)$ operation, where $n$ is the size of the list.
+    \item \texttt{dequeue}: The \texttt{dequeue} method removes the last element of the list. However, it does this via slicing, which is also a $\mathcal{O}(n)$ operation.
+    \item \texttt{size}: The \texttt{size} method uses a list comprehension to recreate the list then invokes the \texttt{len} function. The list comprehension is a $\mathcal{O}(n)$ operation, and the \texttt{len} function is a $\mathcal{O}(1)$ operation. Therefore, the \texttt{size} method is a $\mathcal{O}(n)$ operation.
+\end{enumerate}
+
+Now, we can find the time complexity of \texttt{EvenWorseStack.pop}. 
+
+Finding the time complexity of the \texttt{pop} method is a bit tricky due to the way the \texttt{while} loop is setup. Recall \texttt{Queue.size} is a $\mathcal{O}(n)$ operation. 
+
+To make our lives easier, we will refactor the \texttt{EvenWorseStack.pop} method to make it more readable:
+
+\begin{lstlisting}[language=Python, style=mystyle]
+
+    def pop(self) -> int:
+        temp = Queue()
+        while True:
+            if self._stack.size() == 1:
+                break
+            x = self._stack.dequeue()
+            temp.enqueue(x)
+        value = self._stack.dequeue()
+        self._stack = temp
+        return value
+\end{lstlisting}
+
+The new method is logically equivalent to the old one, but it is easier to analyze. The \texttt{while} loop will run until the size of the \texttt{self.\_stack} is 1. In the worst case, the \texttt{while} loop will run $n-1$ times, where $n$ is the size of the \texttt{self.\_stack}. Hence, this is an $\mathcal{O}(n)$ operation.
+
+Within this while loop, we have a call to \texttt{self.\_stack.size()}, which is also an $\mathcal{O}(n)$ operation. This brings us to a total of $(n - 1) \cdot (n)$ steps. 
+
+We then have to assign the value of \texttt{self.\_stack.dequeue()} to \texttt{x}, which is an $\mathcal{O}(n)$ operation. We then enqueue \texttt{x} into \texttt{temp}, which is also an $\mathcal{O}(n)$ operation. This brings us to a total of $(n - 1) \cdot (n + n)$ steps.
+
+Finally, we dequeue the last element from \texttt{self.\_stack}, which is an $\mathcal{O}(n)$ operation. This brings us to a total of $(n - 1) \cdot (n + n) + n = (n - 1) \cdot (2n) + n $ steps.
+
+Expanding the above, we get $2n^2 - 2n + n = 2n^2 - n$. This is a $\mathcal{O}(n^2)$ operation.
+
+Therefore, the time complexity of the \texttt{pop} method is $\mathcal{O}(n^2)$.
+
+\section{Efficiencii}
+
+Select all the statements that are \textbf{TRUE}:
+  \begin{enumerate}
+    \item The $n_0$ you choose does not change the final result of the efficiency class
+    \item If a function is upper-bounded by $\mathcal{O}(n^2)$, it might still be $\Theta(n)$
+    \item If a function is upper-bounded by $\mathcal{O}(n)$, it might still be $\Theta(n^2)$
+    \item The iterative part of \texttt{QuickSort} is faster than the iterative part of \texttt{MergeSort}
+    \item The recursive part of \texttt{QuickSort} is faster than the recursive part of \texttt{MergeSort}
+    \item If a function is $\mathcal{O}(g(n))$, then it is also $\Theta(g(n))$
+    \item If a function is $\Theta(g(n))$, then it is also $\mathcal{O}(g(n))$
+\end{enumerate}
+
+\textbf{Solution:}
+We will go through each statement one by one:
+
+\begin{enumerate}
+    \item \textbf{False.} Consider the following function:
+    \begin{lstlisting}[language=Python, style=mystyle]
+def mystery(n: int):
+    L = []
+    for i in range(n):
+        for j in range(min(50, n)):
+            L.insert(0, j)
+\end{lstlisting}
+Choosing $n_0 \leq 50$ will make this function \textit{appear} to be $\mathcal{O}(n^3)$, however choosing $n_0 > 50$ will make this function $\mathcal{O}(n^2)$. Therefore, choosing $n_0$ \textit{can} change the final result of the efficiency class. (But not always)
+
+\item \textbf{True}. Recall the definition of $\mathcal{O}$ notation:
+\begin{equation}
+    f(n) \in \mathcal{O}(g(n)) \iff \exists c > 0, n_0 > 0 \text{ such that } f(n) \leq cg(n) \text{ for all } n \geq n_0
+\end{equation}
+
+Generalizing this for $g(n) = n^2$, we have:
+\begin{equation}
+    f(n) \in \mathcal{O}(n^2) \iff \exists c > 0, n_0 > 0 \text{ such that } f(n) \leq cn^2 \forall n \geq n_0
+\end{equation}
+
+Consider the following function:
+\begin{lstlisting}[language=Python, style=mystyle]
+def mystery(n: int):
+    for i in range(n):
+        print(i)
+\end{lstlisting}
+
+This function is clearly $\mathcal{O}(n)$ by inspection, however it is vacuously true that if $f(n) \leq cn$ for all $n \geq n_0$ for some $c > 0$ and $n_0 > 0$, then $f(n) \leq cn^2$ (By definition of $\mathcal{O}$) Therefore, if a function has a time complexity of $\mathcal{O}(n^2)$, it might still be $\Theta(n)$.
+
+\item \textbf{False.} Recall the definition of $\Theta$ notation:
+\begin{equation}
+    f(n) \in \Theta(g(n)) \iff \exists c_1, c_2 > 0, n_0 > 0 \text{ such that } c_1g(n) \leq f(n) \leq c_2g(n) \forall n \geq n_0
+\end{equation}
+
+If $f(n) \in \mathcal{O}(n)$, then $n^2$ grows too fast to lower-bound $f(n)$, no matter which constant we choose.
+
+\textit{Hint!} If this is confusing you, try messing around in Desmos! 
+
+\item \textbf{True.} Refer to your course notes
+\item \textbf{False.} Refer to your course notes
+\item \textbf{False.} Consider the following function:
+\begin{lstlisting}[language=Python, style=mystyle]
+def mystery(n: int):
+    for i in range(n):
+        print(i)
+\end{lstlisting}
+
+This function is clearly $\mathcal{O}(n)$ by inspection, and we know from a previous example that it is also $\mathcal{O}(n^2)$. However, we can clearly see the tightest upper-bound is $\mathcal{O}(n)$. $n^2$ grows too fast to lower-bound $f(n)$, no matter which constant we choose. Therefore this is false and not true for all functions $f(n)$.
+
+\item \textbf{True.}
+Recall the definition of $\Theta$ notation:
+\begin{equation}
+    f(n) \in \Theta(g(n)) \iff \exists c_1, c_2 > 0, n_0 > 0 \text{ such that } c_1g(n) \leq f(n) \leq c_2g(n) \forall n \geq n_0
+\end{equation}
+
+Notice, the right-hand side of the inequality is the definition of $\mathcal{O}$ notation:
+\begin{equation}
+    f(n) \in \mathcal{O}(g(n)) \iff \exists c > 0, n_0 > 0 \text{ such that } f(n) \leq cg(n) \text{ for all } n \geq n_0
+\end{equation}
+
+Therefore, if a function is $\Theta(g(n))$, then it is also $\mathcal{O}(g(n))$.
+
+\end{enumerate}
+
+\section{The Final Challenge}
+
+Refer to Week 10 solutions for the final challenge, as it is the same question.
+
+\end{document}
