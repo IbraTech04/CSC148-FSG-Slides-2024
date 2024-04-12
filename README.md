@@ -46,9 +46,9 @@ Don't know where to start? Here's a list of all the weeks we've covered in CSC14
 - [Solutions](/Week%2012%20-%20Efficiency%20+%20Final%20Week/Solutions/solutions.pdf)
 
 ### [Week 13 - The MEGA FSG](/Week%2013%20-%20The%20MEGA%20FSG)
-- [Slides](/Week%2013%20-%20The%20MEGA%20FSG/slides.pdf)
+- [Slides](/The%20MEGA%20FSG/slides.pdf)
 - *No Homework this week*
-- **Solutions coming soon**
+- [Solutions](/The%20MEGA%20FSG/Solutions)
 
 
 ## Note About This Repository
