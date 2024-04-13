@@ -6,6 +6,9 @@ This week was mostly a *prelude* to CSC236 (because of the FSG rules, I can't ac
 Coming soon, losers
 
 ## Solutions:
-Coming soon, losers
+Solutions can be found in the [Solutions](./Solutions) folder.
+
+Quick Links:
+- [Solutions Writeup](./Solutions/solutions.pdf)
 
 **NOTE:** All solutions are provided outside FSG hours, and are not endorsed neither explicitly nor implicitly by the UTM RGASC, or the CSC148 teaching staff. These solutions are meant to be used as a reference, and not a replacement for the problem solving process. You are encouraged to attend office hours and ask questions during lectures if there are any parts of the solution that you do not understand.
