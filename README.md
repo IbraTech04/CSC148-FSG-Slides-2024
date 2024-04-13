@@ -48,7 +48,7 @@ Don't know where to start? Here's a list of all the weeks we've covered in CSC14
 - Homework: Q13 and Q14 from the Winter 2023 Final Exam
 - [Solutions](/Week%2012%20-%20Efficiency%20+%20Final%20Week/Solutions/solutions.pdf)
 
-### [Week 13 - The MEGA FSG](/Week%2013%20-%20The%20MEGA%20FSG)
+### [Week 13 - The MEGA FSG](/The%20MEGA%20FSG/)
 - [Slides](/The%20MEGA%20FSG/slides.pdf)
 - *No Homework this week*
 - [Solutions](/The%20MEGA%20FSG/Solutions)
