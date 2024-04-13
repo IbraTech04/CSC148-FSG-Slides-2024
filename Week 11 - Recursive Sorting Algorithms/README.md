@@ -11,7 +11,10 @@ Because I'm such a nice FSG Leader, I've decided to omit homework this week :D
 If we don't get to certain questions this week, then that's your "unofficial" homework.
 
 ## Solutions:
-Solutions will be posted **after** the FSG. Nice try, no peeking :P
+Solutions can be found in the [Solutions](./Solutions) folder.
+
+Quick Links:
+- [Solutions Writeup](./Solutions/solutions.pdf)
 
 
 **NOTE:** All solutions are provided outside FSG hours, and are not endorsed neither explicitly nor implicitly by the UTM RGASC, or the CSC148 teaching staff. These solutions are meant to be used as a reference, and not a replacement for the problem solving process. You are encouraged to attend office hours and ask questions during lectures if there are any parts of the solution that you do not understand.
