@@ -8,4 +8,11 @@ This week, myself and Helia have collaborated to bring you the BEST FSG yet. We'
 If you'd like to keep working on the Derivative Calculator, you can do so. Otherwise, you can start studying for the final exam! This repository has a lot of really great content to review for the final exam, though do remember we are **not** representatives of the CSC148H5 course, so it should be noted that this repository is not a comprehensive review of the course.
 
 ## Solutions:
-Solutions will be posted **after** the FSG. Nice try, no peeking :P
+Solutions can be found in the [Solutions](./Solutions) folder.
+
+Quick Links:
+
+- [Solutions Writeup](./Solutions/solutions.pdf)
+- [Did Somebody Say Palindrome?](./Solutions/did_somebody_say_palindrome.py)
+- [InsertMii](./Solutions/insertmii.py)
+- [Derivative Calculator](../Week%2010%20-%20Expression%20Trees%20+%20Efficiency%20+%20Midterm%20Review/Solutions/homework%20solution/Functions.py)

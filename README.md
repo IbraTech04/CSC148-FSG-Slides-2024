@@ -10,6 +10,9 @@ The content within this repository (Including slides, solutions, and homework) i
 
 ## Table of Contents:
 Don't know where to start? Here's a list of all the weeks we've covered in CSC148. Click on the week you want to view, and you'll be taken to the respective folder. There, you can find the slides, homework, and solutions for that week.
+
+*Note: Weeks 1-5 will* ***not*** *be covered in this repository, as there were no FSGs held for those weeks; the first "proper" FSG was held in Week 6.*
+
 ### [Week 6 - Recursion](/Week%206%20-%20Recursion)
 - [Slides](/Week%206%20-%20Recursion/slides.pdf)
 - [Homework](/Week%206%20-%20Recursion/Homework.md)
@@ -56,4 +59,4 @@ This repository is provided as a resource to help you succeed in CSC148. It is n
 
 These slides are meant to be used in conjunction with the course material, and are not meant to be a replacement for the course material. If you find that the slides are not enough, I encourage you to reach out to your TA, Professor, or even your peers for help.
 
-All solutions provided are provided outside of FSG hours, and are not endorsed neither by the UTM RGASC nor the CSC148H5 Course Staff. These solutions are meant to be used as a reference, and not a replacement for the problem solving process. You are encouraged to attend office hours and ask questions during lectures if there are any parts of the solution that you do not understand.
+All solutions provided are provided outside of FSG hours, and are not endorsed neither by the UTM RGASC nor the CSC148H5 Course Staff. These solutions are meant to be used as a reference, and not a replacement for the problem solving process. You are encouraged to attend office hours and ask questions during lectures if there are any parts of the solution that you do not understand. Should you find anything that is incorrect, please open an issue on this repository and I will address it as soon as possible.
