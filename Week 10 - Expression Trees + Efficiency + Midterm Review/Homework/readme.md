@@ -8,7 +8,7 @@ To help you understand the concept of ASTs, we're going to have you implement a 
 ## The Task
 You are to implement a simple derivative calculator that can take in a mathematical expression and return its derivative. The mathematical expression will be represented as an AST, and you will need to implement the AST class and the derivative function. Starter code is provided for you, including doctests and type hints, found in [Functions.py](Functions.py). Note that you should only need to modify this file, as the other file [DerivativeCalculator.py](DerivativeCalculator.py) is the main file that will be used to test your implementation. 
 
-The abstract idea is as follows: All parts of an arbitrary mathmatical function $$f(x)$$ have their own differentiation rules. For instance: Addition, subtraction, multiplication, and division dictate the order of operations, and functions of $$x$$ dictate the differentiation rules. For instance, the derivative of $$x^2$$ is $$2x$$, and the derivative of $$sin(x)$$ is $$cos(x)$$
+The abstract idea is as follows: All parts of an arbitrary mathmatical function $f(x)$ have their own differentiation rules. For instance: Addition, subtraction, multiplication, and division dictate the order of operations, and functions of $x$ dictate the differentiation rules. For instance, the derivative of $x^2$ is $2x$, and the derivative of $sin(x)$ is $cos(x)$
 
 In our file [Functions.py](Functions.py), we abuse Polymorphism to allow us to represent all of these different types of functions as a single class, `ElementaryFunction`. The most important method of this class is the `differentiate` method (which you will be implementing), which will return the derivative of the function. The starter code has everything you will need to get started. All you need to do is fill in the `differentiate` method for each of the different types of functions, and understand how to use the `ElementaryFunction` class to represent the AST of a mathematical expression.
 
@@ -24,12 +24,12 @@ Once you understand and have implemented these classes, you can move on to Task 
 This task will have you implement the `X` class, which represents the variable part of the function. This class is the simplest to implement, as it only requires a constant and exponent to be dealt with. For simplicity, `Constant` objects can auto-simplify themselves using the defined magic methods. 
 
 ## Task 3.5: Exponential Functions
-This task is an *extension* of Task 3, and will have you implement the `Exponential` class. This class is a bit more complex than the previous classes, as it requires the use of the chain rule. The chain rule states that the derivative of a function $$f(g(x))$$ is $$f'(g(x)) \cdot g'(x)$$. This is a bit more complex than the previous classes, but is a good way to test your understanding of the previous classes.
+This task is an *extension* of Task 3, and will have you implement the `Exponential` class. This class is a bit more complex than the previous classes, as it requires the use of the chain rule. The chain rule states that the derivative of a function $f(g(x))$ is $f'(g(x)) \cdot g'(x)$. This is a bit more complex than the previous classes, but is a good way to test your understanding of the previous classes.
 
 *Hint: Spam Chain rule everywhere. The function doesn't care if it's actually required.*
 
 ## Task 4: Trigonometric and Logarithmic Functions
-This task will have you implement the `Sin`, `Cos`, `Tan`, `Sec`, and `Log` classes. These classes are a bit more complex than the previous classes, as they require the use of the chain rule and the quotient rule. The quotient rule states that the derivative of a function $$\frac{f(x)}{g(x)}$$ is $$\frac{f'(x)g(x) - f(x)g'(x)}{g(x)^2}$$. This is a bit more complex than the previous classes, but is a good way to test your understanding of the previous classes.
+This task will have you implement the `Sin`, `Cos`, `Tan`, `Sec`, and `Log` classes. These classes are a bit more complex than the previous classes, as they require the use of the chain rule and the quotient rule. The quotient rule states that the derivative of a function $\frac{f(x)}{g(x)}$ is $\frac{f'(x)g(x) - f(x)g'(x)}{g(x)^2}$. This is a bit more complex than the previous classes, but is a good way to test your understanding of the previous classes.
 
 Once again, your hint is to spam everything everywhere even if you don't think it's needed. Worst-case scenario, you'll end up with an extra coefficient of 1, which can be simplified using magic methods.
 
