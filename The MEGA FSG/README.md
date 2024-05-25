@@ -10,6 +10,8 @@ If you'd like to keep working on the Derivative Calculator, you can do so. Other
 ## Solutions:
 Solutions can be found in the [Solutions](./Solutions) folder.
 
+All solutions provided are provided outside of FSG hours, and **are not endorsed neither by the UTM RGASC nor the CSC148H5 Course Staff.** These solutions are meant to be used as a reference, and not a replacement for the problem solving process. Use at your own risk. You are encouraged to attend office hours and ask questions during lectures if there are any parts of the solution that you do not understand. Should you find anything that is incorrect, please open an issue on this repository and I will address it as soon as possible.
+
 Quick Links:
 
 - [Solutions Writeup](./Solutions/solutions.pdf)

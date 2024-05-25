@@ -10,4 +10,4 @@ This week, I've assigned you a relatively tricky problem thats *new* for your cl
 ## Solutions:
 You're in luck! This time you're getting full LaTeX solutions. You can find them in the [solutions](./Solutions/) folder.
 
-**NOTE:** All solutions are provided outside FSG hours, and are not endorsed neither explicitly nor implicitly by the UTM RGASC, or the CSC148 teaching staff. These solutions are meant to be used as a reference, and not a replacement for the problem solving process. You are encouraged to attend office hours and ask questions during lectures if there are any parts of the solution that you do not understand.
+All solutions provided are provided outside of FSG hours, and **are not endorsed neither by the UTM RGASC nor the CSC148H5 Course Staff.** These solutions are meant to be used as a reference, and not a replacement for the problem solving process. Use at your own risk. You are encouraged to attend office hours and ask questions during lectures if there are any parts of the solution that you do not understand. Should you find anything that is incorrect, please open an issue on this repository and I will address it as soon as possible.
