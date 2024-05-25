@@ -1,4 +1,4 @@
-# IbraFSG CSC148 Slides
+# IbraFSG CSC148 Slides - Winter 2024
 Hello and welcome, IbraCult, to the official repository for the CSC148 IbraFSG 2023-2024 Slides. That's right! If you missed a session, couldn't copy down the question in time, or just want to have the slides up during the session, you can find them all here. 
 
 All compiled PDF files can be found in their respective week's folder. There, you can also find the raw LaTeX files used to compile the PDFs, and solutions (posted **after** the FSG session) to the practice problems. You can also find any homework problems that we may have discussed in the slides, along with a multitude of hints and tips to help you along the way.
