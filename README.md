@@ -59,8 +59,8 @@ This repository is provided as a resource to help you succeed in CSC148. It is n
 
 *In other words: This repository is as unofficial as they get, and anything your professors say takes precedence over it. Nothing here is guaranteed to be correct, and you should NOT take this repository as the "gold standard" of CSC148*.
 
-These slides are meant to be used in conjunction with the course material, and **are not meant to be a replacement for the course material.** If you find that the slides are not enough, I encourage you to reach out to your TA, Professor, or even your peers for help.
+Once again: These slides are meant to be used **in conjunction with the course material**, and **are not meant to be a replacement for the course material/official course meetings** If you find that these slides are not enough, I encourage you to reach out to your TA, Professor, or even your peers for help.
 
-All solutions provided are provided outside of FSG hours, and **are not endorsed neither by the UTM RGASC nor the CSC148H5 Course Staff.** These solutions are meant to be used as a reference, and not a replacement for the problem solving process. Use at your own risk. You are encouraged to attend office hours and ask questions during lectures if there are any parts of the solution that you do not understand. Should you find anything that is incorrect, please open an issue on this repository and I will address it as soon as possible.
+All solutions listed are provided **outside of FSG hours**, and **are not endorsed neither by the UTM RGASC nor the CSC148H5 Course Staff.** These solutions are meant to be used as a reference, and not a replacement for the problem solving process. Use at your own risk. You are encouraged to attend office hours and ask questions during lectures if there are any parts of the solution that you do not understand. Should you find anything that is incorrect, please open an issue on this repository and I will address it as soon as possible.
 
 Use this repository both wisely and at your own risk, and remember that the best way to learn is to practice, practice, practice! Good luck, and happy coding! 🚀
