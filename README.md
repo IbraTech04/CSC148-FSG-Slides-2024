@@ -8,6 +8,8 @@ Note that FSGs are officially over, and this repository will not be updated with
 ## Copyright Notice
 The content within this repository (Including slides, solutions, and homework) is the intellectual property of Ibrahim Chehab. You are free to use this content for personal use, but you are not allowed to redistribute, modify, or sell this content without the express written consent of Ibrahim Chehab. That means you **cannot** upload this content to any other website (including but not limited to CourseHero, Chegg, Quizlet, or any other website that provides solutions to students), claim it as your own, or use it for any commercial purposes. 
 
+If you would like to use portions of this material in your own (future) CSC148 FSG, please contact me on Discord @techmaster04, or through the [UTM CS Discord Server](discord.gg/utmcs) first. 
+
 ## Table of Contents:
 Don't know where to start? Here's a list of all the weeks we've covered in CSC148. Click on the week you want to view, and you'll be taken to the respective folder. There, you can find the slides, homework, and solutions for that week.
 
