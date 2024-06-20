@@ -301,12 +301,14 @@ In this problem, you are tasked with matching the trees to their respective trav
     \textbf{Solution:}\\
     The answer for this question comes from the lecture slides. 
 
-    The worst case of the \texttt{search} operation for a \textit{Binary Search Tree} is $\mathcal{O}(h)$, where $h$ is the height of the tree. $h$ is bounded by 
+    As we know from the \textit{Week 9} slides, the general complexity of most \textit{Binary Search Tree} operations is $\mathcal{O}(h)$, where $h$ is the height of the tree. $h$ is bounded by 
     \begin{equation*}
         \log_2(n) \leq h \leq n
     \end{equation*}
 
-    Where $n$ is the size of the tree. Consider the following BST:
+    Where $n$ is the size of the tree. Intuitively, this applies to the \texttt{Search} operation. 
+
+    In the absolute worst-case \left(i.e: When the BST is \textit{highly imbalanced} or a glorified \texttt{LinkedList}\right), the complexity shoots up to $\mathcal{O}(n)$. For instance, consider the following BST:
 
     \begin{center}
         \begin{forest}
@@ -331,6 +333,10 @@ In this problem, you are tasked with matching the trees to their respective trav
     \end{center}
 
     Searching for the value $6$ in this tree would take $\mathcal{O}(n)$ time. This is because the tree is a glorified linked list, and the value $6$ is at the very end of the list.
+
+    \\ \\
+
+    Claiming that \textbf{all} \texttt{BST} operations are $\mathcal{O}(\log n)$ is \textbf{NOT} a fair assumption, as the complexity is highly dependant on the \textit{balancing factor} \left(i.e: how balanced the tree is\right) of the tree. If the tree is \textit{balanced}, your operations will perform closer to $\mathcal{O}(\log n)$. The less balanced the tree is, the closer you get to $\mathcal{O}(n)$ complexity. 
 
     \clearpage
     \subsubsection{}
