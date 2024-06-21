@@ -176,10 +176,8 @@ In this problem, you are tasked with matching the trees to their respective trav
 
     \textbf{Solution:}\\
     Like all theory questions, it is important to first draw out some examples. This strategy will help you in upper-year courses (Especially CSC236). 
-
-    Clearly, the minimum number of leaves a binary tree of height $n$ can have is $1$. This is because a tree of height $n$ can be a single node, which is a leaf. $1$ leaf can also occur if every node in the tree has one child (i.e: The tree is a glorified linked list).
-
-    For the maximum number of leaves, we can see this happens when the tree is a \textit{complete} binary tree. A complete binary tree is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible. Let's draw a few examples and see if we can find a pattern.
+    \\ \\Clearly, the minimum number of leaves a binary tree of height $n$ can have is $1$. This is because a tree of height $n$ can be a single node, which is a leaf. $1$ leaf can also occur if every node in the tree has one child (i.e: The tree is a glorified linked list).
+    \\ \\For the maximum number of leaves, we can see this happens when the tree is a \textit{complete} binary tree. A complete binary tree is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible. Let's draw a few examples and see if we can find a pattern.
 
     \textbf{Height 1:} 1 leaf.\\
     \begin{center}
@@ -253,8 +251,7 @@ In this problem, you are tasked with matching the trees to their respective trav
 
     \textbf{Solution:}\\
     The maximum height $h_1$ that can be achieved is $n$. This is because a tree of size $n$ can be a glorified linked list, where each node has one child. This is a tree of height $n$.
-
-    The minimum height once again involves a complete binary tree. A complete binary tree of size $n$ has height $\log_2(n)$. Let's draw a few examples to see if we can find a pattern.
+    \\ \\The minimum height once again involves a complete binary tree. A complete binary tree of size $n$ has height $\log_2(n)$. Let's draw a few examples to see if we can find a pattern.
 
     \textbf{Height 1:} Size 1.\\
     \begin{center}
@@ -308,7 +305,7 @@ In this problem, you are tasked with matching the trees to their respective trav
 
     Where $n$ is the size of the tree. Intuitively, this applies to the \texttt{Search} operation. 
 
-    In the absolute worst-case \left(i.e: When the BST is \textit{highly imbalanced} or a glorified \texttt{LinkedList}\right), the complexity shoots up to $\mathcal{O}(n)$. For instance, consider the following BST:
+    In the absolute worst-case (i.e: When the BST is \textit{highly imbalanced} or a glorified \texttt{LinkedList}), the complexity shoots up to $\mathcal{O}(n)$. For instance, consider the following BST:
 
     \begin{center}
         \begin{forest}
@@ -333,10 +330,7 @@ In this problem, you are tasked with matching the trees to their respective trav
     \end{center}
 
     Searching for the value $6$ in this tree would take $\mathcal{O}(n)$ time. This is because the tree is a glorified linked list, and the value $6$ is at the very end of the list.
-
-    \\ \\
-
-    Claiming that \textbf{all} \texttt{BST} operations are $\mathcal{O}(\log n)$ is \textbf{NOT} a fair assumption, as the complexity is highly dependant on the \textit{balancing factor} \left(i.e: how balanced the tree is\right) of the tree. If the tree is \textit{balanced}, your operations will perform closer to $\mathcal{O}(\log n)$. The less balanced the tree is, the closer you get to $\mathcal{O}(n)$ complexity. 
+    \\ Claiming that \textbf{all} \texttt{BST} operations are $\mathcal{O}(\log n)$ is \textbf{NOT} a fair assumption, as the complexity is highly dependant on the \textit{balancing factor} (i.e: how balanced the tree is) of the tree. If the tree is \textit{balanced}, your operations will perform closer to $\mathcal{O}(\log n)$. The less balanced the tree is, the closer you get to $\mathcal{O}(n)$ complexity. 
 
     \clearpage
     \subsubsection{}
@@ -516,7 +510,7 @@ def reconstruct_from_postorder(lst: list[int]) -> BinarySearchTree:
   In the above examples, we have shown that given a pre-order or post-order traversal, we can reconstruct a BST (assuming no duplicates). However, we have not considered an \textit{in-order} traversal. Let's prove that this is not possible.
   
 \begin{proof}
-    Assume for sake of contradiction that we can reconstruct a BST given only the in-order traversal. That is, define a function $f(lst)$ that takes in a list of integers $lst$ and returns a BST. We would like to prove that this is a \textit{bijective} function, meaning that for every BST, there is a unique in-order traversal, and for every in-order traversal, there is a unique BST.
+    Assume for sake of contradiction that we can reconstruct a BST given only the in-order traversal. That is, define a function $f: \texttt{list} \to \texttt{BinarySearchTree}$ that takes in a list of integers $lst$ and returns a BST. We would like to prove that this is a \textit{bijective} function, meaning that for every BST, there is a unique in-order traversal, and for every in-order traversal, there is a unique BST.
 
     Consider the following BST:
     \begin{center}
@@ -559,9 +553,8 @@ def reconstruct_from_postorder(lst: list[int]) -> BinarySearchTree:
     \end{center}
     Notice, by rotating the tree, we have not violated the BST properties, hence it is still a BST. However, the \textit{in-order} traversal of this tree remains the same, as \texttt{[3, 5, 7, 10, 12, 15, 17]}. 
 
-    Hence, we have proven that the function $f(lst)$ is not bijective, and therefore, it is not possible to reconstruct a BST given only the in-order traversal.
-
-    This becomes more apparent when we consider \textit{AVL Trees} (Out of the scope of the course, but a good exercise for the reader). AVL Trees are a type of BST that are \textit{self-balancing}. This means they maintain the BST property (i.e: their in-order traversal is always sorted), however the tree itself is not unique. Therefore, it is not possible to reconstruct an AVL Tree given only the in-order traversal.
+    Hence, we have proven that the function $f$ is not bijective, and therefore, it is not possible to reconstruct a BST given only the in-order traversal.
+    \\ \\This becomes more apparent when we consider \textit{AVL Trees} (Out of the scope of the course, but a good exercise for the reader). AVL Trees are a type of BST that are \textit{self-balancing}. This means they maintain the BST property (i.e: their in-order traversal is always sorted), however the tree itself is not unique. Therefore, it is not possible to reconstruct an AVL Tree given only the in-order traversal, and by extension the same applies to BSTs.
     \\
   \end{proof}
 
