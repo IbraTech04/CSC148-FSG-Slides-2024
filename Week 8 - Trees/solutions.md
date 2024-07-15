@@ -13,7 +13,7 @@ The trick for this question was to decide which approach to use to solve the pro
 ### General Approach:
 The key to this problem is to traverse through the entire tree (i.e: root and subtrees) and pay attention to the subtrees. Remember, we defined a *cycle* as a tree-like structure, but where it's not strictly linearly connected. For instance, if we have a tree with a root and two subtrees, and one of the subtrees has a subtree that points back to the root, then we have a cycle.
 
-The general appraoch is to iterate through the three (technically I should say Graph here) and keep track of all the Nodes we've seen so far. If we see a node that we've already seen, then we have a cycle - This is because in a cycle we're going to see the same node more than once.
+The general appraoch is to iterate through the tree (technically I should say Graph here) and keep track of all the Nodes we've seen so far. If we see a node that we've already seen, then we have a cycle - This is because in a cycle we're going to see the same node more than once.
 
 But how do we do this? Well, there's two ways. We can either use recursion or iteration. Iteration is easier, but recursion is better practice.
 
